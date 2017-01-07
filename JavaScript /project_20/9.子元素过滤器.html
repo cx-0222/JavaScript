@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>子元素过滤器</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ul>
+		<ul>
+			<li>9</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		//nth-child(1) 用法与css相同 
+		$('li:nth-child(1)').click(function(){
+			alert("nth-child(1)点击了");
+		})
+		
+		//first 指整个DOM中的第一个li
+		$('li:first').click(function(){
+			alert("first点击了");
+		})
+		
+		//only-child 它是唯一子标签 没有兄弟标签
+		$('li:only-child').click(function(){
+			alert("first点击了");
+		})
+	</script>
+</html>

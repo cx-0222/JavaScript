@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#outer {
+			width: 800px;
+			height: 600px;
+			background-color: orange;
+		}
+		#inner {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			margin-top: 100px;
+			margin-left: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="inner"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var outer = document.all.outer;
+	var inner = document.all.inner;
+
+	var osTop = inner.offsetTop;
+	var osLeft = inner.offsetLeft;
+	console.log(osTop);//0
+	console.log(osLeft);//0
+
+</script>
+</html>

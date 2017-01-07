@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JQ操作css样式</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="div1"></div>
+		<div class="div1"></div>
+		<p style="width: 400px;"></p>
+	</body>
+	<script type="text/javascript">
+	//css 五种赋值方式
+		$('.div1').css({'width':'100px','height':'100px','background':'red'});
+		$('.div1').css({width:200});
+		$('.div1').css({height:'200px'});
+		$('.div1').css('background','yellow');
+		//回调函数有两个参数 
+		$('.div1').css('width',function(n,v){
+			//n v 为回调参数 n 代表index 元素所在的索引 v代表value 为该节点该属性(width)的原来值
+			console.log(n);
+			console.log(v);//200px 为字符串
+			//更改索引为1 的 .div1  将其宽度改为300px
+			if ( n==1) {
+				//return "300px";
+				//获取p的宽 与 v 相加
+				//回调函数的存在在于可以处理逻辑，
+			var newV = 	$('p').width() + parseInt(v)
+			//同时函数也是赋值操作 需要有值
+			//而函数返回值就是函数的值
+			return newV;
+			}
+		});
+		
+		//只有属性没有赋值 是取值操作
+		var color = $('.div1').css('background');
+		console.log(color);
+		
+	</script>
+</html>

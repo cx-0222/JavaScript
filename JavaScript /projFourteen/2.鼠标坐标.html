@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标坐标</title>
+		<style type="text/css">
+			.sup {
+				width: 200px;
+				height: 200px;
+				background: red;
+			}
+			.sub {
+				width: 100px;
+				height: 100px;
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sup">
+			<div class="sub"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.onclick = function(e) {
+			var ev = e || event;
+			console.log(ev.clientX, ev.clientY);
+		}
+	</script>
+</html>

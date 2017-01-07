@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function sayHello2(name) {
+	    var text = 'Hello ' + name; // Local variable
+	    console.log(text);
+	    var say = function() { console.log(text); }
+	    console.log(say);//function () { console.log(text); }
+	    return say;
+
+	}
+	var say2 = sayHello2('Bob');//sayHello2('Bob')返回的就是say 即 里面的子函数
+	console.log(say2);//function () { console.log(text); }
+	say2(); // logs "Hello Bob" say2()相当于子函数调用！
+</script>
+</html>

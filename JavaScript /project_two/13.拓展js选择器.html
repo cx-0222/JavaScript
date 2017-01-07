@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 20px;
+				height: 20px;
+				border: 1px solid red;
+				margin: 30px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<div id="div4"></div>
+		<div id="div5"></div>
+	</body>
+	<script type="text/javascript">
+		var div1 = document.getElementById("div1");
+		div1.style.backgroundColor = "yellow";
+		
+		var div2 =document.querySelector("div:nth-child(2)");
+		div2.style.backgroundColor = "blue";
+		
+		
+		//all:文档中所有节点(标签)的集合 all. 可以索引到id属性值以及name属性值（该节点得拥有name属性）
+		//div3 代表id 或 name 
+		var div3 = document.all.div3;
+		div3.style.backgroundColor = "green";
+	</script>
+</html>

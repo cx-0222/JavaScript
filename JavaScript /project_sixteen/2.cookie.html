@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>cookie缓存</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		console.log("设置之前"+document.cookie);
+		//console.log(typeof ck);//string
+		
+		//① cookie 必须严格按照key=value形式进行赋值
+		//② 如果形式不满足key=value，如直接value或key：value，会被解析为key(键)为空，value(值)为value或key：value
+		//key-value又称键-值对
+		//③ key相同时 会更新value值，key不同时，会作为新的键-值对添加到cookie中
+		//key:空 value:String
+		document.cookie = "String";
+		//key:name value:zhangsan
+		document.cookie = "name=zhangsan";
+		document.cookie = "age=18";
+		//key:空 value:gender:male
+		document.cookie = "gender:male";
+		//key:user value:zhangsan 新生键值对
+		document.cookie = "user=zhangsan";
+		//key:name value:lisi 更新值
+		document.cookie = "name=lisi";
+		
+		
+		//httpOnly 直接通过浏览器或js代码是无法查看拥有httpOnly属性的键值对
+		document.cookie = "person=chinese;httpOnly"
+		
+		
+		var ck = document.cookie;
+		console.log("设置之后"+ck);//undefined;
+	</script>
+</html>

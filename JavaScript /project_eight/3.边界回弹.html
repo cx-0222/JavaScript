@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#wrap {
+				width: 800px;
+				height: 500px;
+				border: 5px solid black;
+				margin: 20px auto;
+				position: relative;
+			}
+			#element {
+				width: 150px;
+				height: 150px;
+				background-color: greenyellow;
+				border: 5px solid green;
+				border-radius: 50%;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="element"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap = document.querySelector("#wrap");
+		var ele = document.querySelector("#element");
+		//运动速率
+		var speed = 2;
+		//获得ele在wrap中的起始位置(wrap已经定位)
+		var oT = ele.offsetTop;
+		var oL = ele.offsetLeft;
+		var timer = null;
+		
+		//获得横向纵向的最大范围
+		var maxWidth = wrap.clientWidth - ele.offsetWidth;
+		var maxHeight = wrap.clientHeight - ele.offsetHeight;
+		
+		//设置运动方向
+		var tTb = true;
+		var lTr = true;
+		wrap.onmouseenter = function(){
+			 	timer = setInterval(function(){
+			 		if(tTb){
+			 			oT += speed;
+			 			ele.style.top = oT + "px";
+			 			if(oT == maxHeight){
+			 				tTb = false;
+			 			}
+			 		}else{
+			 			oT -= speed;
+			 			ele.style.top = oT + "px";
+			 			if(oT == 0){
+			 				tTb = true;
+			 			}
+			 		}	
+					if(lTr){
+			 			oL += speed;
+			 			ele.style.left = oL + "px";
+			 			//console.log(lTr);
+			 			if(oL == maxWidth){
+			 				lTr = false;
+			 				//console.log(lTr);
+			 			}
+			 		}else{
+			 			//console.log(lTr);
+			 			oL -= speed;
+			 			ele.style.left = oL + "px";
+			 			if(oL == 0){
+			 				lTr = true;
+			 			}
+			 		}
+				},30);
+		}
+		wrap.onmouseleave = function(){
+			clearInterval(timer);
+		}
+	</script>
+</html>

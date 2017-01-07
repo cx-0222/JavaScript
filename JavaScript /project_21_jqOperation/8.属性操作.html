@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>属性操作</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.div111 {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div title="DIV"></div>
+	</body>
+	<script type="text/javascript">
+	//获取属性值
+		//alert($('div').attr('title'));
+	//设置属性值 更改title值
+		$('div').attr('title','title');
+		//alert($('div').attr('title'));
+	//添加属性
+		$('div').attr({class:'div',suibian:'wangzhi',yanzhi:'paigu'})
+		//alert($('div').attr('yanzhi'));
+	//移除属性	
+		$('div').removeAttr('suibian');
+		
+	//
+		var inp = $('<input type="checkbox" />');
+		inp.appendTo($('body'));
+		
+		//给元素直接prop属性名 未添加属性值
+		//如果该属性名已经存在，那么就是取值 等同attr()
+		//如果该属性名不存在，那么就添加该属性，并赋系统默认值
+		inp.prop("checked");
+		//inp.prop("disabled",true);//禁用
+		
+		
+		$('div').addClass('div111');
+		//$('div').addClass('div222'); //不会覆盖div111 会连续添加
+		//$('div').removeClass('div111');	
+		
+		
+		$(document).click(function(){
+			//开关 添加 移除
+			$('div').toggleClass("div111");
+		})
+	</script>
+</html>

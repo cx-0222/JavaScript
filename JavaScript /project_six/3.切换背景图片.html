@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 80px;
+				height: 80px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1" style="background-image: url(img/1.png);"></div>
+	</body>
+	<script type="text/javascript">
+		var div1 = document.querySelector("#div1");
+		div1.onclick = function(){
+			if(div1.style.backgroundImage == 'url("img/1.png")'){//'url("img/1.png")' 单引号是因为js样式赋值均需要加引号，相当于div1.style.color = "blue"     里面的双引号是因为url本身格式为url("img/..")只是上面样式默认可以不写 
+		
+				div1.style.backgroundImage = 'url("img/2.png")';
+			}else{
+				div1.style.backgroundImage = 'url("img/1.png")';
+			}
+		}
+	</script>
+</html>

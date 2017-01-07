@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ul">
+			<li id="li1">第1🐘</li>
+			<li id="li2">第2🐘</li>
+			<li id="li3">第3🐘</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var ul = document.all.ul;
+		var li1 = document.querySelector("#li1");
+		li1.innerHTML = "第一项";
+		li1.innerText = "第yi项";
+		
+		var li2 = document.querySelector("#li2");
+		var li3 = document.querySelector("#li3");
+		//innerText 只能 读改 节点内容
+		li2.innerText = "<i>第er项</i>";
+		//innerHTML 不仅拥有innerText功能，还可以写节点
+		li3.innerHTML = "<i>第三项</i>";
+		//将其移掉，变为外面的东西
+		li2.outerText = "哈哈";
+		li3.outerHTML = "嘻嘻";
+	</script>
+</html>

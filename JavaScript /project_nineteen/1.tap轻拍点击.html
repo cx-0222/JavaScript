@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>tap页面</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			.div {
+				width: 150px;
+				height: 150px;
+				margin: 100px auto;
+				background-color: aquamarine;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">返回主页</div>
+		<div class="div"></div>
+	</body>
+	<script src="js/hammer-2.0.8.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var div = document.querySelector(".div");
+		var body = document.querySelector("body");
+		//1.获取手势对象 根据元素节点创建对象 
+		//var hammer = new Hammer(div);
+		var hammer = new Hammer(document);
+		//2.通过对象给元素节点绑定事件
+		hammer.on('tap',function(ev){
+			//ev 不是系统的event 而是回调函数传回的参数 但是ev包含系统的event
+			//console.log(ev);
+			var r = randomNum(255,0);
+			var g = randomNum(255,0);
+			var b = randomNum(255,0);
+			//div.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+			body.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+		});
+		
+		
+		var h = new Hammer(div);
+		h.on("tap",function(ev){
+			//hammer框架中的ev非系统原生事件对象，但包含了系统原生对象
+			//通过 ev.srcEvent 可以操作系统原生事件的任何事情
+			//ev.srcEvent.cancelBubble = true;
+			console.log("div");
+		});
+		function randomNum(max,min){
+			return parseInt(Math.random()*(max-min+1)+min);
+		}
+	</script>
+</html>

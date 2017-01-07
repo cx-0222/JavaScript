@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="" >
+			<input type="text" name=""/>
+			<input type="password" name="" />
+			<textarea></textarea>
+			<lable type="text">lable</lable>
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+	<script type="text/javascript">
+		//用的标签选择器
+		$('input').click(function(){
+			alert('input点击了')
+		})
+		
+		//表单选择器只对表单内部进行选择 
+		//类型为text的输入框  input:text input 可以省略
+		$(':text').click(function(){
+			alert('input:text点击了')
+		})
+		
+		//类型为password的输入框  input:password input 可以省略
+		$(':password').click(function(){
+			alert('input:password点击了')
+		})
+		
+		//只要是输入框都ok 包括button 
+		$(':input').click(function(){
+			alert(':input点击了')
+		})
+	</script>
+</html>

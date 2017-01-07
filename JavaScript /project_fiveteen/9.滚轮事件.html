@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>滚轮事件</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//事件屏蔽 return false 只适用于on事件
+		console.log("1111")
+		//非火狐第一套
+		document.onmousewheel = function(e){
+			var ev = e || event;
+			console.log(e);
+		}
+		//非火狐第二套
+		document.addEventListener("mousewheel",function(){
+			console.log("222")
+		})
+		//火狐！！！ 火狐浏览器滚轮滚动事件
+		document.addEventListener("DOMMouseScroll",function(){
+			console.log("333")
+		})
+	</script>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			#box {
+				width: 83vw;
+				position: relative;
+				margin: 0 auto;
+			}
+			
+			ul {
+				width: 20vw;
+				height: 100px;
+				background: aqua;
+				position: absolute;
+				top: 0;
+			}
+			
+			#ul1 {
+				left: 0;
+			}
+			
+			#ul2 {
+				left: 21vw;
+			}
+			
+			#ul3 {
+				left: 42vw;
+			}
+			
+			#ul4 {
+				left: 63vw;
+			}
+			
+			li {
+				font: bold 80px "微软雅黑";
+				width: 20vw;
+				margin-bottom: 10px;
+				background: paleturquoise;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<ul id="ul1"></ul>
+			<ul id="ul2"></ul>
+			<ul id="ul3"></ul>
+			<ul id="ul4"></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var count = 1;
+		var temp;
+		var minUl = [0, 0, 0, 0];
+		var ul = document.getElementsByTagName('ul');
+
+		function init() {
+			for(var i = 0; i < 15; i++) {
+				addLi();
+			}
+		}
+
+		function addLi() {
+			var tempLi = document.createElement('li');
+			
+			setProperty(tempLi);
+			
+			temp = foundMinUl();
+			
+			ul[temp].appendChild(tempLi);
+			minUl[temp] = tempLi.offsetTop + tempLi.offsetHeight;
+		}
+
+		function setProperty(obj) {
+			obj.style.background = "red";
+			var ttt = 1;
+			var tempNum = 0;
+			
+			(function (obj,num){
+				var timer = null;
+				timer = setInterval(function(){
+					tempNum += parseInt(Math.random()*5);
+					if (tempNum >= 100) {
+						tempNum = 100;
+						clearInterval(timer);
+						timer = null;
+						obj.style.background = "paleturquoise";
+						obj.innerText = num ;
+					}else{
+						obj.innerText  = tempNum + "%";
+					}
+				},200)
+			})(obj,count);
+			count++;
+			obj.style.height = parseInt(Math.random() * 400 + 100) + "px";
+		}
+
+		function foundMinUl() {
+			var tempMin = 0;
+			for(var j = 1; j < minUl.length; j++) {
+				if(minUl[tempMin] > minUl[j]) {
+					tempMin = j;
+				}
+
+			}
+			return tempMin;
+		}
+
+		init();
+		
+		window.onscroll = function() {
+			var t = document.documentElement.scrollTop || document.body.scrollTop;
+			var oTop = minUl[temp];
+			var cTop = document.documentElement.clientHeight;
+			if(t >= oTop - cTop+10) {
+				init();
+			}
+		}
+	</script>
+
+</html>

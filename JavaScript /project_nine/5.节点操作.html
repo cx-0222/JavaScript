@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 600px;
+				height: 300px;
+				background-color: aquamarine;
+				margin: 30px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+	</body>
+	<script type="text/javascript">
+		//getElementsByTagName 返回值永远是数组，哪怕只装一个，[0]就代表取数组的第一个
+		var body = document.getElementsByTagName("body")[0];
+		var div1 = document.all.div1;
+		var div2 = document.all.div2;
+		//①
+		//创建节点的函数只能由document来调用
+		//创建节点元素
+		//document.createElement()
+		//创建文本节点
+		//document.createTextNode()
+		//创建注释节点
+		//document.createComment()
+		var eleA = document.createElement("a");
+		//②
+		//添加节点：appendChild()
+		//父节点.appendChild(子节点)
+		//appendChild(node) : 向childNodes末尾插入一个节点node
+		//添加到childNodes数组的最后（所有节点之后）
+		body.appendChild(eleA); //在body里面div下面
+		//一个节点只能被添加一次
+		div1.appendChild(eleA); //在div里面
+		//添加节点：insertBefore(node,targetNode)
+		//父节点.insertBefore(子节点,父节点中的目标节点)
+		//insertBefore(node,targetNode) : 向目标节点targetNode之前插入节点node
+		body.insertBefore(eleA, div1); //body里面 div1之前
+
+		//③
+
+				var timer = null;
+				div1.onclick = function() {
+							clearTimeout(timer);
+							timer = setTimeout(function() {
+							console.log("1111");
+							body.replaceChild(eleA, div2);
+						},500);
+					}
+					//ondblclick 双击
+				div1.ondblclick = function() {
+					clearTimeout(timer);
+					console.log("2222");
+					body.replaceChild(div2, eleA);
+				}
+
+	
+		//双击事件会触发单击事件
+		div1.ondblclick = function(){
+			clearTimeout(timer);
+			//代码去
+			console.log("双击")
+			if(div1.nextElementSibling != div2){
+				body.replaceChild(div2,eleA);
+			}
+		}
+	</script>
+
+</html>

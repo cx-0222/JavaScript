@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div {
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				background-color: red;
+				position: absolute;
+				left: 30px;
+				top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+	</body>
+	<script src="js/tween.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var div = document.querySelector("#div");
+		//开始位置
+		var b = div.offsetLeft;
+		//过渡路径
+		var end = 1000;//结束位置
+		var c = end - b;
+		//初始步数
+		var t = 0;
+		//最终步数 总步数
+		var d = 30;
+		
+		var timer = setInterval(function(){
+			t++;
+			if(t>=d){
+				clearInterval(timer);
+			}
+			//div.style.left = Tween.Linear(t,b,c,d) + "px";
+			//div.style.left = Tween.Bounce.easeOut(t,b,c,d) + "px";//Tween 调用方法 Bounce 运动轨迹 easeOut 运动曲线
+			div.style.left = Tween.Back.easeOut(t,b,c,d) + "px";
+		},30)
+	</script>
+</html>

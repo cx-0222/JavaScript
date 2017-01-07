@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>cookie过期时间</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//1.不同的浏览器获得的时间对象不一样
+	//2.有的是当前区的时间，有些是格林尼治时间(GMT)
+		//① 获取时间对象
+		var apDate = new Date();//apDate.getHours()-8所以这也得转为格林尼治时间(谷歌)
+	//4.将获得的时间处理为格林尼治时间
+		//② 设置过期时间，例如7天后过期
+		apDate.setDate(apDate.getDate()+7);
+		//注： "=" 右侧的apDate为时间对象类型，而左侧为字符串类型
+		//顾第二步需要放在第三步之前
+		//③ 对时间进行处理  转换为了字符串
+		apDate = apDate.toGMTString();
+		
+	//3.设置过期时间需要的时间参数默认是格林尼治时间
+	//5.设置cookie过期时间expires
+		document.cookie = "name=lizi;expires="+apDate;//expires过期时间为格林尼治时间
+		document.cookie = "age=6;"
+	    
+	</script>
+</html>

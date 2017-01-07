@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>匹配链接</title>
+	</head>
+	<body>
+		请输入网址：
+		<input type="text" name="website" id="website" style="width: 300px;" />
+		<a id="a" href=""><input type="button" name="btn" id="btn" value="跳转" /></a>
+	</body>
+	<script type="text/javascript">
+		var website = document.getElementById("website");
+		var btn = document.getElementById("btn");
+		var a = document.getElementById("a");
+		function check(website) {
+			console.log(website);
+			var reg = /^(http(s)?:\/\/)?(www\.)?[\w-]+\.\w{2,4}(\/)?$/ig;
+			if(reg.test(website)) {
+				//alert("您输入的网址格式合法");
+				a.href = website;
+				return true;
+			} else {
+				alert("您输入的网址格式不合法");
+				return false;
+			}
+		}
+
+		btn.onclick = function() {
+			check(website.value);
+		}
+	</script>
+</html>

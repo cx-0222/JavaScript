@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件绑定</title>
+		<style type="text/css">
+			div {
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+				margin: 30px auto;
+				/*background-color: blue;*/
+				
+			}
+		</style>
+	</head>
+	<body>
+	<!--onmouseenter="alert('enter')" 鼠标悬浮-->
+	<!--onmouseleave="alert('leave')" 鼠标移开-->
+	<!--事件绑定的三种方法-->
+		<div onmouseenter="alert('enter')" onmouseleave="alert('leave')"></div>
+		<div id="div2"></div>
+		<div onmouseenter="myEnter()"></div>
+	</body>
+	<script type="text/javascript">
+		var div2 = document.getElementById("div2");
+		console.log(div2);
+		//能获取行间式，不可以获取内联里面的样式
+		//var a = div2.style.backgroundColor;
+		div2.onmouseenter =function(){
+			alert("enter");
+		}
+		div2.onmouseleave =function(){
+			alert("leave");
+		}
+		function myEnter(){
+			alert("enter");
+		}
+	</script>
+</html>

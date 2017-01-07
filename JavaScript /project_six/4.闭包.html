@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			a {
+				text-decoration: none;
+				font-size: 2em;
+				display: block;
+				margin-top: 20px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<!--为了避免href影响下面的点击事件：① 删除href  ② 给href填充一个js的空方法javascript:void(0)-->
+		<a href="javascript:void(0)"><span>第1个链接</span></a>
+		<a href="javascript:void(0)"><span>第2个链接</span></a>
+		<a href="javascript:void(0)"><span>第3个链接</span></a>
+		<a href="javascript:void(0)"><span>第4个链接</span></a>
+		<a href="javascript:void(0)"><span>第5个链接</span></a>
+	</body>
+	<script type="text/javascript">
+	/*
+	    //var a1 = document.querySelector("a:nth-child(1)");
+		var a = document.getElementsByTagName("a");
+		 function dj(num){
+			a.innerHTML = num;
+			console.log(a.innerHTML);
+		}
+		
+		for(var i = 1; i<=5;i++){
+			dj(i);
+		}
+		*/
+		
+	
+		//变量的污染：节点绑定循环
+		//var a = document.querySelectorAll("a");
+		var as = document.getElementsByTagName("a");
+		for(var i = 0; i<5;i++){//后执行，i为全局变量！！所以as[i]为5？？？？？
+			as[i].onclick = function (){//先编译 
+					alert(i);
+				}
+		}
+	//闭包
+		//定义：在函数的内部声明函数，子函数就称之为闭包
+		function outerFun(){
+			var num = 10;
+			//innerFun();
+			// 1、访问函数内部的局部变量，那么就作为该函数的闭包(子函数)
+				//注：函数必须在自己所在作用域或所在作用域的子作用域中被调用
+			/*
+			(function innerFun(count){//此处的innerFun可以省略
+				//function innerFun(){} 即为闭包函数
+				console.log(num + count);
+			})(20);
+			*/
+			
+			// 2、将函数内部的变量持久化
+			function innerFun(count){//此处的innerFun可以省略
+				return num;
+			}
+			return innerFun;
+		}
+		//outerFun();
+		var aaa = outerFun();//此时aaa为innerFun()
+		//alert(aaa);//返回的是整个innerFun()，而不是方法里面的操作
+		//alert(aaa());//aaa()相当于调用了innerFun()，所以打印的是里面的操作，即打印10 
+		
+		//3、解决"污染"问题
+		
+		var as = document.getElementsByTagName("a");
+		for(var i = 0; i<5;i++){//此处i为全局
+			//利用闭包实现循环绑定，解决污染
+			/*
+			 * （function(i){
+					as[i].onclick = function (){
+						alert(i);
+					}
+				})(i);
+				相当于
+				innerFn(i)
+				function innerFn(i){//不用调用时innerFn可以不写
+					as[i].onclick = function (){
+						alert(i);
+					}
+				}
+			 */
+			/*
+			(function(i){//此处i为局部
+				//as[i] 的下标为0~4 所以上面for里i的范围为 0<=i<5
+				as[i].onclick = function (){//先编译 
+					alert(i+1);
+				}
+			})(i);//此处的i由for的i提供
+			*/
+			
+			function innerFn(i){//此处的i不可以删，因为是参数列表，相当于num，与下面innerFn(i)里的i不是同一个！！！！
+				as[i].onclick = function (){
+					alert(i+1);
+				}
+			}
+			innerFn(i);
+		}
+		
+		
+		//利用属性解决污染
+		var as = document.getElementsByTagName("a");
+		for(var i = 0; i<5;i++){
+			as[i].index = i;//index是自己创造的属性
+			as[i].onclick = function (){
+					//console.log(this);//点击第一个a标签，this就代表第一个a标签 所以 this.index 表示第一个a的index属性值
+					alert(this.index + 1);//this 表示谁激活function () 就代表谁
+				}
+		}
+	</script>
+</html>

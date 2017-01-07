@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ与样式</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	</head>
+	<body>
+		<div class="div"></div>
+		<div class="div1"></div>
+		<div class="div2"></div>
+	</body>
+	<script type="text/javascript">
+	//$(".div") 获取div
+		//第一种
+		$(".div").css({
+			'width':'100px',
+			'height':'100px',
+			'background':'red'
+			})
+		
+		//第二种
+		$(".div1").css({'width':'100px'})
+		$(".div1").css({'height':'100px'})
+		$(".div1").css({'background':'blue'})
+		
+		//第三种
+		$(".div2").css({'width':'100px'}).css({'height':'100px'}).css({'background':'cyan'})
+		
+	</script>
+</html>

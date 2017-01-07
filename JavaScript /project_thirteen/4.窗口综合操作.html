@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="新开窗口" /><br /><br />
+		<input type="button" value="关闭窗口" /><br /><br />
+		<input type="button" value="调整窗口" /><br /><br />
+		<input type="button" value="移动窗口" /><br /><br />
+	</body>
+	<script type="text/javascript">
+		var inps = document.querySelectorAll("input");
+		inps[0].onclick = function (){
+			newWindow = window.open("index.html","","width=200,height=200,top=100,left=100");
+			//console.log(newWindow);
+			window.focus();
+		}
+		inps[1].onclick = function (){
+			newWindow.close();
+		}
+		inps[2].onclick = function (){
+			//newWindow.resizeTo(500,500);
+			newWindow.resizeTo(100,100);//手动可以调整的更小，如果靠缩放做不到
+			newWindow.focus();//让新窗口获得焦点！因为点击的是原窗口，所以焦点在原网页，该语句就是让新窗口获取焦点
+			
+		}
+		inps[3].onclick = function (){
+			newWindow.moveTo(500,500);
+			newWindow.focus();
+		}
+	</script>
+</html>

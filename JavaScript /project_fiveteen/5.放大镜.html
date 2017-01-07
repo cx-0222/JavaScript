@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜</title>
+		<style type="text/css">
+		 	* {
+		 		margin: 0;
+		 		padding: 0;
+		 	}
+			div {
+				
+				float: left;
+				position: relative;
+			}
+			.max_wrap {
+				width: 350px;
+				height: 350px;
+				overflow: hidden;
+				display: none;
+			}
+			.slider {
+				position: absolute;
+				top: 0;
+				left: 0;
+				border: none;
+				width: 140px;
+				height: 140px;
+				background-color: rgba(255,255,0,0.3);
+				display: none;
+			}
+			.max_wrap>img {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="min_wrap" style="border: 1px solid black;">
+			<img src="img/xiao.jpg"/>
+			<div class="slider"></div>
+		</div>
+		<div class="max_wrap">
+			<img src="img/da.jpg"/>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var minWrap  = document.querySelector(".min_wrap");
+		var maxWrap  = document.querySelector(".max_wrap");
+		var slider  = document.querySelector(".slider");
+		var maxImg = document.querySelector(".max_wrap>img");
+		
+		//1.slider 跟随鼠标在minwrap上移动
+		//2.maximg移动到相应位置，与slider区域内内容一致
+		minWrap.onmousemove = function(e){
+			slider.style.display = "block";
+			maxWrap.style.display = "block";
+			var ev = e || event;
+			//slider 相对于视口的位置  但由于minwrap与视口距离为0，所以相当于slider 相较于minwrap左边的距离
+			var x = ev.clientX - slider.offsetWidth/2;
+			var y = ev.clientY - slider.offsetHeight/2;
+			//slider 可活动最大宽度和高度
+			var maxWidth = minWrap.clientWidth - slider.offsetWidth;
+			var maxHeight = minWrap.clientHeight - slider.offsetHeight;
+			
+			
+			if(x < 0){
+				x = 0;
+			}
+			if(y < 0){
+				y = 0;
+			}
+			if(x > maxWidth){
+				x = maxWidth;
+			}
+			if(y > maxHeight){
+				y = maxHeight;
+			}
+			
+//			(x < 0) &&(x = 0);
+//			(y < 0) && (y = 0);
+//			(x > maxWidth) && (x = maxWidth);
+//			(y > maxHeight) && (y = maxHeight);
+			
+			slider.style.top = y + "px";
+			slider.style.left = x + "px";
+			//详解见img文件夹
+			//计算比例 slider现在的坐标占可移动范围的比例
+			var w = x/maxWidth;
+			var h = y/maxHeight;
+			//大图位置
+			var maxImg_top = (maxImg.offsetHeight - maxWrap.offsetHeight)*h;
+			var maxImg_left = (maxImg.offsetWidth - maxWrap.offsetWidth)*w;
+			//设置大图位置
+			maxImg.style.top = -maxImg_top + "px";
+			maxImg.style.left = -maxImg_left + "px";
+		}
+		minWrap.onmouseleave = function (){
+			slider.style.display = "none";
+			maxWrap.style.display = "none";
+		}
+	</script>
+</html>

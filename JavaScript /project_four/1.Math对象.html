@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//Math 是数字相关对象
+		//Math.函数  代表可以通过Math对象名来使用Math对象拥有的函数
+		// . 可以理解为函数的调用
+		//1、最大值
+		//var num1 = Math.max(3,5);//输出5
+			var num1 = Math.max(3,5,7);//输出7
+			document.write("<p>num1的值为" + num1 + "</P>");
+		
+		//2、最小值
+			var num2 = Math.min(-100,-200);//输出-200
+			document.write("<p>num2的值为" + num2 + "</P>");
+		
+		//3、向上取整：1.1-1.9 均为2  -1.9~-1.1均为-1
+			//var num3 = Math.ceil(1.4);//输出2
+			//var num3 = Math.ceil(1.6);//输出2
+			var num3 = Math.ceil(-1.6);//输出-1
+			document.write("<p>num3的值为" + num3 + "</P>");
+		
+		//4、向下取整 -1.9~-1.1 均为-2
+			//var num4 = Math.floor(1.8);//输出1
+			var num4 = Math.floor(-1.6);//输出-2
+			document.write("<p>num4的值为" + num4 + "</P>");
+		//5、四舍五入 5 永远往大值靠 所以
+			var num5 = Math.round(-1.4);//输出-1
+			var num5 = Math.round(-1.5);//输出-1 
+			var num5 = Math.round(-1.6);//输出-2
+			document.write("<p>num5的值为" + num5 + "</P>");
+		//6、随机数 
+			//Math.random()打印0~1之间的随机数 ,里面不用填参数
+			//parseInt(Math.random() * (m-n+1))+n  n~m之间的数
+			//parseInt(Math.random() * (20-10+1))+10
+			//parseInt(Math.random() * 11) 打印0~11之间的整数
+			//parseInt(Math.random() * 10)+10 打印10~20之间的整数
+			for(var i = 1; i <= 5; i++){
+				var num6 = parseInt(Math.random() * 11)+10;
+				document.write("<p>num6的值为" + num6 + "</P>");
+			}
+		
+		//7、绝对值
+			var num7 = Math.abs(10.5);//输出10.5
+			var num7 = Math.abs(-10.5);//输出10.5
+			document.write("<p>num7的值为" + num7 + "</P>");
+		//8、幂
+			var num8 = Math.pow(3,2)//输出9
+			document.write("<p>num8的值为" + num8 + "</P>");
+		
+	</script>
+</html>

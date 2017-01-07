@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//二维数组：数组中的每一项都是一维数组
+//		var arr1 = new Array();
+//		var arr2 = new Array();
+//		var arr = [arr1,arr2];
+
+		var arr = [[1,2,3],[4,5,6],[7,8,9]]
+		//第一行1 2 3
+		//第二行4 5 6 
+		//第三行7 8 9 
+		// ① arr.length是二维数组的长度 为 3  因为它包含了 3 个对象
+		document.write(arr.length);
+		// ② 通过 数组名[行索引][列索引] 访问每一项
+		document.write(arr[0][0]);
+		// ③ 数组名[索引] 索引值行索引 返回二维数组中的第一个一维数组，即第一行
+		document.write(arr[0]);
+		document.write(arr[0].length);//第一行的长度
+		
+		//鞍点：某行最大且所在列最小
+	</script>
+</html>

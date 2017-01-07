@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>圆形碰撞检测</title>
+		<style type="text/css">
+			.move {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				border-radius:50% ;
+				font: normal 30px/100px "微软雅黑";
+				text-align: center;
+				color: blue;
+				position: absolute;
+				
+			}
+			.hit {
+				width: 130px;
+				height: 130px;
+				background-color: red;
+				border-radius:50% ;
+				position: absolute;
+				left: 60%;
+				top: 40%;
+				font: normal 30px/130px "微软雅黑";
+				text-align: center;
+				color: deepskyblue;
+			}
+			.hit.ing {
+				width: 130px;
+				height: 130px;
+				border-radius:50% ;
+				position: absolute;
+				left: 60%;
+				top: 40%;
+				font: normal 30px/130px "微软雅黑";
+				text-align: center;
+				color: pink;
+				background-color: teal;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="move">移动</div>
+		<div class="hit">目标</div>
+	</body>
+	<script type="text/javascript">
+		var move = document.querySelector(".move");
+		var hit = document.querySelector(".hit");
+		
+		move.onmousedown = function(e){
+			var ev = e || event;
+			var disX = ev.clientX - move.offsetLeft;//鼠标离div边框的距离
+			var disY = ev.clientY - move.offsetTop;
+			document.onmousemove = function(e){
+				var ev = e || event;
+				var move_left = ev.clientX - disX;//move离视口左边的距离
+				var move_top = ev.clientY - disY;
+				move.style.top = move_top  + "px";
+				move.style.left = move_left  + "px";	
+				//获得目标的圆心，半径
+				var x1 = hit.offsetLeft + (hit.offsetWidth/2);
+				var y1 = hit.offsetTop + (hit.offsetHeight/2);
+				var r1 = hit.offsetWidth/2;
+				//自身的圆心，半径
+				var x2 = move.offsetLeft + (move.offsetWidth/2);
+				var y2 = move.offsetTop + (move.offsetHeight/2);
+				var r2 = move.offsetWidth/2
+				//判断 两圆心点之间距离是否小于等于两半径之和
+				var a = x1 - x2;
+				var b = y1 - y2;
+				var c = a* a + b* b;
+				if(c <= (r1+r2)*(r1+r2)){
+					hit.className += " ing";
+				}else{
+					hit.className = "hit";
+				}
+			}
+			document.onmouseup = function(e){
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}
+			//阻断事件 ： 选中文本
+			//return false 只适合on事件
+			return false;
+			//ev.preventDefault();
+		}
+	</script>
+</html>

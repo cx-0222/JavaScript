@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>正则表达式获取节点</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var html = document.querySelector("html");
+			var reg = /(\n)*<(.)*>/g;
+			var str = html.innerHTML;
+			var arr = str.match(reg);
+			console.log(arr);
+		</script>
+	</body>
+
+</html>

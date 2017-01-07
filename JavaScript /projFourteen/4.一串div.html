@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>一串div</title>
+		<style type="text/css">
+			div {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				border-radius: 50%;
+				position: fixed;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+	<script type="text/javascript">
+		var divs = document.querySelectorAll("div");
+		var timer = null;
+		document.onmousemove = function(e) {
+			var ev = e || event;
+			// 第0个div永远跟着鼠标走
+			divs[0].style.left = ev.clientX - 25 + "px";
+			divs[0].style.top = ev.clientY - 25 + "px";
+		
+			// 第一次触发方法时，从第9个找第8个开始，直到找到第1个，都没动
+			// 第1个找到第0个，动起来。第一次触发后就动两个div
+			// 依次类推，第二次触发方法，会动三个，直到第九次触发，十个全动
+			// 由于下一次触发方法，会找上一次触发方法的上一个div位置，且从后往前找，顾形成联动
+			for(var i = divs.length - 1; i > 0; i--) {
+				divs[i].style.left = divs[i - 1].style.left;
+				divs[i].style.top = divs[i - 1].style.top;
+			}
+			
+			// 1、没触发一次方法，均假设为最后一次触发方法，
+			// 顾开一个延迟定时器，让所有div归位
+			// 2、如果在延迟期间，又触发方法，代表上一次非最后一次触发，
+			// 就将上一次延迟定时器清除，认为该次为最后一次，
+			// 重新开启延迟(重置延迟总时间)
+			// 3、依次类推，直到真的最后一次触发出现，延迟走完，div归位
+			// 4、因为本次清除的是上一次的延迟定时器，所以变量得是同一个，
+			// 顾设置变量为全局变量
+			clearTimeout(timer);
+			timer = setTimeout(function() {
+				for(var i = 1; i < divs.length; i++) {
+					divs[i].style.left = divs[i - 1].style.left;
+					divs[i].style.top = divs[i - 1].style.top;
+				}
+				clearTimeout(timer);
+				timer = null;
+			}, 20)
+		}
+	</script>
+
+</html>

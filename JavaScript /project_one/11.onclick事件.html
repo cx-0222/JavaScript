@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>onclick事件</title>
+		<style type="text/css">
+			div {
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+				margin: 30px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div name="div" id="div" onclick="change()"></div>
+	</body>
+	<script type="text/javascript">
+	  /*
+	 	//点击换背景颜色
+		var a = document.getElementById("div");
+		function change(){
+			//object.style.样式 = ""  值用双引号括起来！！！
+			a.style.backgroundColor = "red";
+		}
+		*/
+		
+		/*
+		 //点击用数组循环切换颜色
+		var sColor = ['red','blue','yellow','gray'];
+		//getElementsByTagName() 通过标签的name值来获取标签 （返回的是一个数组，将所有相同的name值的标签返回） 
+	    var oDiv = document.getElementsByTagName('div')[0];
+	    var iNum = 0;
+	    oDiv.onclick = function(){
+	        this.style.background = sColor[iNum%sColor.length];
+	        iNum++;
+	    };
+	    */
+	   
+	   
+	   /*
+	    //点击用三目运算符 循环更换颜色
+	    var a = document.getElementById("div");
+		function change(){
+			//= 是赋值，，所以条件判断里面要用 ==  ！！！！
+			a.style.backgroundColor == "red"? a.style.backgroundColor = "blue" : a.style.backgroundColor = "red"	
+		}
+		*/
+		
+		
+		/*
+		//点击用if语句 循环更换颜色
+		 var a = document.getElementById("div");
+		function change(){
+			if(a.style.backgroundColor == "red"){
+				a.style.backgroundColor = "blue";
+			}else{
+				a.style.backgroundColor = "red";
+			}
+		}
+		*/
+	</script>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="wrap">
+			<p id="p1">001</p>
+			<p id="p2">002</p>
+			<p id="p3">003</p>
+			<p id="p4">004</p>
+			<p id="p5">005</p>
+			<p id="p6">006</p>
+			<p id="p7">007</p>
+			<p id="p8">008</p>
+			<p id="p9">009</p>
+			<p id="p10">010</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap = document.all.wrap;
+		var pArr = wrap.children;//children：所有是标签类型的子节点
+		console.log(pArr);
+		
+		Object.prototype.firstChild = function(){
+			//此处不可以加if  因为pArr是特殊的，不完全是数组
+			//if(this.constructor == Array){
+				//遇到return，整个函数将返回，后面的代码将不再执行
+				return this[0];
+			//}
+		}
+		//第一个标签节点
+		var p1 = pArr[0];
+		console.log(p1);//<p id="p1">001</p>
+		//子节点调用的数对象，子节点是父节点的一个属性
+		//此处调用的是函数
+		p1 = pArr.firstChild();
+		console.log(p1);//
+		
+		
+		//prototype
+			//作用 1、添加方法
+		//自己给Number封装一个函数add
+		Number.prototype.add = function(num){
+			return this + num;
+		}
+		var oo = 10;
+		//alert(oo.add(50));
+		//alert((10).add(50));
+		//alert(10..add(50));//第一个代表小数点，第二个代表调用
+		
+			// 2、添加属性
+			// ① String 对象可以通过prototype来拓展函数及属性，
+				//对于所以的String类对象或是String类型变量都适用
+			
+			String.prototype.appendBefore = function(str){
+				return str.concat(this);
+			}
+			//alert("123".appendBefore("abc"))//abc123
+			
+			String.prototype.type = "string";
+			var a = "123";
+			//alert(a.type);//string
+			// ② 对于变量str而言，可以直接给其添加属性，且该属性只有该变量本身拥有
+			var str11 = new String();
+			var str22 = new String();//对象
+			str11.property = "property"
+			//alert(str11.property);//property
+			//alert(str22.property);//undefind
+			
+			// ③ 对于常量而言，本身不具备存储其他数据的空间，且自身还需要空间存储，所以无法
+				//存储任何东西
+			
+			
+			//constructor 作为对象变量类型匹配
+			//var ele = new String();
+			//var ele = new Date();
+			var ele = [];
+			//console.log(ele.constructor)//functionArray() { [native code] }
+			
+			if(ele.constructor == String){
+				alert("ele是字符串");
+			}
+			if(ele.constructor == Date){
+				alert("ele是时间");
+			}
+			if(ele.constructor == Array){
+				alert("ele是数组");
+			}
+	</script>
+</html>

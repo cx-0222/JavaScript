@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>量词</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	
+		//n+  :匹配任何包含至少一个 n 的字符串。
+		var str = "ort foot booooom force";
+		var reg = /o+/g;
+		//匹配 fo /foo /fo...o
+		//var reg = /fo+/g;
+		var arr = str.match(reg);
+		console.log(arr);//"o", "oo", "ooooo", "o"]
+		//console.log(arr);//["foo", "fo"]
+		
+		
+		//n*:匹配任何包含零个或多个 n 的字符串
+		var str1 = "firt foot booooom force tfop";
+		//匹配f/ fo /foo /fo...o
+		var reg1 = /fo*/g;
+		var arr1 = str1.match(reg1);
+		console.log(arr1);//["f", "foo", "fo", "fo"]
+		
+		//n?:匹配任何包含零个或一个 n 的字符串
+		var str2 = "firt foot booooom force tfop";
+		//匹配f/ fo
+		var reg2 = /fo?/g;
+		var arr2 = str2.match(reg2);
+		console.log(arr2);//["f", "fo", "fo", "fo"]
+		
+		
+		
+		//n{X}:匹配包含 X 个 n 的序列的字符串
+		var str3 = "firt foot booooom force tfop";
+		//匹配oo
+		var reg3 = /o{2}/g;
+		var arr3 = str3.match(reg3);
+		console.log(arr3);//["oo", "oo", "oo"]
+		
+		
+		//n{X,Y}:匹配包含 X 或 Y 个 n 的序列的字符串
+		var str4 = "firt foot booooom force tfop";
+		//o{2,5} 匹配 oo，ooooo
+		//o{1,} 匹配 o/oo/o...o
+		//fo{0,2} 匹配 f/fo/foo
+		var reg4 = /fo{0,2}/g;
+		var arr4 = str4.match(reg4);
+		console.log(arr4);//o{1,5} ["oo", "ooooo", "o", "o"] / o{2,5}["oo", "ooooo"] / fo{0,2}["f", "foo", "fo", "fo"]
+		
+		
+		
+		var str5 = "firt foot\nfood fire food";
+		//属性m：以\n为一句话的分割标准，匹配每一句话的开头或结尾
+		//^匹配开头
+		var reg5 = /od$/gm;
+		var arr5 = str5.match(reg5);
+		console.log(arr5);
+		
+		var str6 = "firt foot\nfood fire food";
+		var reg6 = /od$/gm;
+		var arr6 = str6.match(reg6);
+		console.log(arr6);
+		
+		
+		var str7 = "food toddle";
+		//\b 判断单词的结尾
+		//只匹配food的od 不匹配 toddle的od
+		var reg7 = /od\b/gm;
+		var arr7= str7.match(reg7);
+		console.log(arr7;
+	</script>
+</html>

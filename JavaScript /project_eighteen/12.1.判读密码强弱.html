@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>判断密码强弱</title>
+	</head>
+	<body>
+		请输入密码：
+		<input type="password" name="pwd" id="pwd" value="" />
+		<input type="button" name="btn" id="btn" value="密码强度" />
+	</body>
+	<script type="text/javascript">
+		var pwd = document.getElementById("pwd");
+		var btn = document.getElementById("btn");
+		//先确定密码组合形式 (纯数字 纯小写 纯大写 特殊字符)并规定相对应的权重
+		var rules = [{reg:/\d+/,weight:2},
+					{reg:/[a-z]+/,weight:4},
+					{reg:/[A-Z]+/,weight:8},
+					{reg:/\W/,weight:16}];
+		//规定各个等级密码对应的权值
+		var level = {'0-10':'弱',
+					 '10-20':'中',
+					 '20-30':'强'}
+		function check(pwd){
+			var weight = 0;
+			for(var i = rules.length-1; i>=0; i--){
+				if(rules[i].reg.test(pwd)){
+					//权值相加
+					weight += rules[i].weight;
+					//console.log(weight);
+				}
+			}
+			var key = '20-30';
+			if(weight <= 10) key = '0-10';
+			else if(weight <= 20) key = '10-20';
+			console.log(pwd,level[key]);
+		}
+		
+		btn.onclick = function(){
+			//console.log(pwd.value);
+			check(pwd.value);
+		}
+	</script>
+</html>

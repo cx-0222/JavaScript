@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>内容过滤器</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: olive;
+				margin: 10px auto;
+				font: normal 20px/100px "微软雅黑";
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div>有内容div</div>
+		<div>
+			<p>有内容p</p>
+		</div>
+		<div></div>
+	</body>
+	<script type="text/javascript">
+	//空标签  不含内容不含子标签
+		$("div:empty").click(function(){
+			alert("没有内容 没有子标签");
+		})
+	//有特定内容 即有能匹配上的内容
+		$('div:contains("有内容div")').click(function(){
+			alert("便签(或子便签内容)包含：有内容div  匹配上的意思 ");
+		})
+	//有内容的便签 或者 有子便签的标签
+		$('div:parent').click(function(){
+			alert("有内容 或 有子标签");
+		})
+		
+	//有特定子标签的标签	
+		$('div:has("p")').click(function(){
+			alert("有子标签p的标签");
+		})
+	</script>
+</html>

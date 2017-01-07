@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>视频</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			.wrap {
+				width:800px; 
+				height:400px;
+				background-color: gainsboro;
+			}
+			.btnPlay {
+				float: left;
+				margin-right:10px ;
+			}
+			.progressBar {
+				position: relative;
+				left: 180px;
+				top: -14px;
+				height: 10px;
+				width: 55%;
+				background-color: #000;
+			}
+			.timeBar {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 0;
+				height: 100%;
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<!--poster 属性指定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。-->
+			<video id="myVideo" width="800" height="400">
+				<source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+				<source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+				<source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+				<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+				<param name="movie" value="myvideo.swf" />
+				<param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+			</object> 当前浏览器不支持 video直接播放，点击这里下载视频：
+				<a href="myvideo.webm">下载视频</a>
+			</video>
+			<!--播放与暂停-->
+			<a class="btnPlay" href="#">paly/pasue</a>
+			<!--播放时间和和持续时间-->
+			<div class="progressTime">
+				<span class="current">0:00</span>/<span class="duration">0:00</span>
+			</div>
+			<!--进度条-->
+			<div class="progressBar">
+				<div class="timeBar"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * video[0].duration 		总时间
+		 * video[0].currentTime		已播放时间
+		 * video[0].paly				开始播放
+		 * video[0].pause			暂停播放
+		 * video[0].muted			是否静音
+		 * video[0].volume			音量
+		 * video[0].playbackrate		快进(退)数值
+		 * 
+		 */
+	</script>
+	<script type="text/javascript">
+		//获取一个DOM对象
+		//var video = document.getElementById("myVideo");
+		//获取一个JQ对象
+		var video = $('#myVideo');
+		// 1. 暂停 与 播放
+		//play() pause() 是DOM对象的方法 所以 video必须转换为DOM对象
+		$('.btnPlay').on('click', function() {
+			if(video.get(0).paused) {
+				video.get(0).play();
+			} else {
+				video.get(0).pause();
+			}
+		});
+
+		// 2. 显示视频播放时间和和持续时间
+			//① 当指定的音频/视频的元数据已加载时，会发生 loadedmetadata 事件。
+				//音频/视频的元数据包括：时长、尺寸（仅视频）以及文本轨道。
+				//当音频/视频处于加载过程中时，会依次发生以下事件：
+                //loadstart
+				//durationchange
+				//loadedmetadata
+				//loadeddata
+				//progress
+				//canplay
+				//canplaythrough
+			//② duration 属性 返回当前音频/视频的长度，以秒计。
+			//③ ontimeupdate 事件在视频/音频（audio/video）当前的播放位置发送改变时触发。
+			//④ currentTime currentTime 属性设置或返回音频/视频播放的当前位置（以秒计）。
+				//当设置该属性时，播放会跳跃到指定的位置。
+		video.on('loadedmetadata', function() {
+			//⑤ toFixed(2) 保留两位小数 toFixed(4)保留四位 
+			//$('.duration').text(Math.round(video.get(0).duration).toFixed(2));
+			var time = video.get(0).duration;//秒数
+			//console.log(time);
+			//转为分钟
+			var minute = parseInt(time / 60);
+			//console.log(minute);
+			var second = parseInt(time - minute*60);
+			//console.log(second);//string - 0 变为number类型
+			var dura = minute +':'+ second;
+			//console.log(dura);//string  那么上面变为number 类型 有必要么？？？？
+			$('.duration').text(dura);
+		});
+		video.on('timeupdate',function(){
+			//$('.current').text(Math.round(video.get(0).currentTime).toFixed(2));
+			var time = Math.floor(video.get(0).currentTime)//秒
+			//console.log(time);
+			var minute =parseInt(time / 60);
+			//console.log(minute);
+			var second = time-minute*60;
+			//console.log(second)
+			var cur;
+			if(second < 10){
+				cur = minute +":0"+second;
+			}else{
+				cur = minute +":"+second;
+			}
+			$('.current').text(cur);
+			
+			//进度条
+			var maxduration = Math.floor(video.get(0).duration);
+			//console.log(maxduration);
+			var currentPos = Math.floor(video.get(0).currentTime);
+			//console.log(currentPos)
+			var percentage = parseInt(100 * currentPos / maxduration);
+			//console.log(percentage);
+			$('.timeBar').css('width',percentage + '%');
+		});
+		
+		//进度条
+		var timeDrag = false;
+		$('.progressBar').mousedown(function(e){
+			timeDrag = true;
+			updatebar(e.pageX);
+			//console.log(updatebar(e.pageX));
+		});
+		
+		$(document).mouseup(function(e){
+			if (timeDrag) {
+				timeDrag = false;
+				updatebar(e.pageX);
+			}
+		});
+		
+		$(document).mousemove(function(e){
+			if (timeDrag) {
+				updatebar(e.pageX);
+			}
+		});
+		
+		var updatebar = function(x){
+			var progress = $('.progressBar');
+			var
+		}
+	</script>
+
+</html>

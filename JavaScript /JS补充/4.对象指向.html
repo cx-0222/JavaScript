@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>对象指向</title>
+	</head>
+	<body>
+	</body>
+	<!--
+	<script type="text/javascript">
+		function add(a,b){
+			alert(a + b);
+		}
+		
+		function low(a,b){
+			alert(a - b);
+		}
+		//调用
+		//add(10,20);//30
+		
+		//① call apply 改变函数对象指向 功能一样
+		//②callapply 第一个参数都是函数指向，但apply第二个参数必须是数组 call没有限制
+		
+		//用add 替换 low 被调用
+		//add.call(low,10,20);//30
+		add.apply(low,[10,20]);//30
+		
+	</script>
+	-->
+	
+	<!-- this指向
+	<script type="text/javascript">
+		//相当于创建一个构造函数
+		function People(){
+			//属性
+			this.name = "人类";
+			//方法
+			this.showName = function(){
+				alert("姓名:"+this.name);
+			}
+		}
+		//利用构造函数 创建一个对象
+		var p = new People();
+		//alert(p.name);
+		//p.showName();
+		
+		function Chinese(){
+			this.name = "中国人";
+		}
+		var c = new Chinese();
+		//alert(c.name);
+		
+		
+		
+		//① 该showName方法 由c调用 但方法属于p 属于p替c去调用
+		//② 调用showName的this 还是p 但是p是替c调用 所以在showName函数体中出现是this 指向的是c
+		//③ showName 有参数时 要加括号  没有时不加
+		//④ call 和 apply 的区别就是函数需要携带的参数  没有参数的时候 是一样的
+		p.showName.call(c);
+		p.showName.apply(c);
+	</script>
+	-->
+	<!--继承
+	<script type="text/javascript">
+	
+		function People(){
+			//属性
+			this.name = "人类";
+			//方法
+			this.showName = function(){
+				alert("姓名:"+this.name);
+			}
+		}
+		
+		
+		function Chinese(){
+			//先继承 属性以及方法
+			People.call(this);
+			//如果需要有特性 可以再定义 或 重新规定自己的特性
+			this.name = "中国人";
+		}
+		
+		var c = new Chinese();
+		c.showName();
+		
+	</script>
+	
+-->
+	<script type="text/javascript">
+		var obj = {
+			name:'对象'
+		}
+		function test(){
+			alert(this.name)
+		}
+		//将test函数中的this 与对象obj进行绑定
+		//那么test中出现的this均是对象obj  
+		var fn = test.bind(obj);
+		fn();
+		
+	</script>
+</html>

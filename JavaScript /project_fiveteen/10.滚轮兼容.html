@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>滚轮事件浏览器兼容</title>
+	</head>
+
+	<body>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</body>
+	<script type="text/javascript">
+		var inf = window.navigator.userAgent; //或得是字符串
+		console.log(inf);
+		if(inf.indexOf("Firefox") != -1) {
+			document.addEventListener("DOMMouseScroll", apWheelEvent); //apWheelEvent写了括号叫调用，不写叫绑定
+		} else {
+			document.addEventListener("mousewheel", apWheelEvent)
+		}
+
+		function apWheelEvent(e) {
+			var ev = e || event;
+			console.log(ev);
+			if(inf.indexOf("Firefox") != -1) {
+				if(ev.detail > 0 ){
+					console.log("向下");
+				}else{
+					console.log("向上");
+				}
+			} else {
+				if(ev.wheelDelta > 0 ){
+					console.log("向上");
+				}else{
+					console.log("向下");
+				}
+			}
+
+			//console.log(ev.detail);//火狐
+			//console.log(ev.wheelDelta) //非火狐
+		}
+	</script>
+
+</html>

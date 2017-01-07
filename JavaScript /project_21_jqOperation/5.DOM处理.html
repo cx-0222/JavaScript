@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM处理添加父节点</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="inner"></div>
+		<p>pppp</p>
+		<div class="inner"></div>
+	</body>
+	<script type="text/javascript">
+	//添加父节点
+		//$('.inner').wrap('<div class="outer"></div>');
+	//移除最近父节点
+		//$('.inner').unwrap();
+		
+	//	给.inner添加共有父节点 当.inner 不是连续的时候 会自动将.inner 放在一起 剔除中间的其他元素
+	$('.inner').wrapAll('<div class="outer"></div>');
+	
+	</script>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>五行导航栏</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.wrap {
+				position: relative;
+			}
+			
+			ul {
+				list-style: none;
+				/*width: 400px;*/
+				/*给父类一个合适的高度  清浮动的一种*/
+				height: 40px;
+			}
+			
+			li {
+				width: 80px;
+				text-align: center;
+				font: normal 20px/40px "微软雅黑";
+				/*子元素全部浮动，脱离文档流，不再撑开父级的宽高*/
+				float: left;
+			}
+			
+			.slider {
+				width: 80px;
+				height: 5px;
+				background-color: red;
+				position: absolute;
+				left: 0;
+				top: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+	</body>
+	<script src="js/tween.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	//先写第一行！！因为每行的运动都相同，所以将第一行的运动方法封装成一个方法，循环调用五次就可以！！！
+		var wraps = document.getElementsByClassName("wrap");
+		for(var i = 0; i < wraps.length; i++){
+			move(i);
+		}
+		function move(i) {
+			//第一个wrap以及里面的li和slider
+			//var wrap = document.getElementsByClassName("wrap")[i];
+			var wrap = wraps[i];
+			var lis = wrap.getElementsByTagName("li");
+			var slider = wrap.getElementsByClassName("slider")[0];
+			//console.log(wrap);
+			//console.log(lis);
+			//console.log(slider);
+			var timer = null;
+			//让五个li 拥有事件
+			for(var i = 0; i < lis.length; i++) {
+				lis[i].index = i;
+				lis[i].onmouseenter = function() {
+					var t = 0;
+					var d = 30;
+					var b = slider.offsetLeft;
+					var end = this.index * slider.offsetWidth;
+					var c = end - b;
+					clearInterval(timer);
+					timer = setInterval(function() {
+						t++
+						if(t >= d) {
+							clearInterval(timer);
+							timer = null;
+						}
+						slider.style.left = Tween.Back.easeOut(t, b, c, d) + "px";
+					}, 30);
+				}
+			}
+		}
+	</script>
+</html>

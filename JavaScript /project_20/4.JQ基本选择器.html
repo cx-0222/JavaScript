@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ基本选择器</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin-bottom: 20px;
+				font: normal 20px/100px "微软雅黑";
+				text-align: center;
+			}
+			
+			.other {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				display: block;
+				font: normal 20px/100px "微软雅黑";
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="divIDJS">jsJs</div>
+		<div id="divIDJQ">jqId</div>
+		<div class="divClassJQ">jqClass</div>
+		<p class="other">p</p>
+		<box class="other">box</box>
+		
+	</body>
+	<script type="text/javascript">
+	
+		//原生js
+		var divIDJS = document.all.divIDJS;
+		divIDJS.onclick = function(){
+			alert("divIDJS点击了");
+		}
+		//jq
+		//有重复的就叠加 即都有用
+		//1.id选择器
+		$("#divIDJQ").click(function(){
+			alert("divIDJQ点击了");
+		})
+		//2.class选择器
+		$(".divClassJQ").click(function(){
+			alert("divClassJQ点击了");
+		})
+		//3.标签选择器
+		$("div").click(function(){
+			alert("div点击了");
+		})
+		//4.复合型 不需要循环绑定 
+		$(".other").click(function(){
+			alert("other点击了");
+		})
+		$("div,p,box").click(function(){
+			alert("最终点击");
+		})
+		//$("div.divClassJQ,p,box").click(function(){
+			//alert("最终点击");
+		//})
+	</script>
+</html>

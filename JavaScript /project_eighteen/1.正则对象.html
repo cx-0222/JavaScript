@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>正则对象RegExp</title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//创建一个正则表达式对象
+		var reg = new RegExp("a");
+		//创建一个普通字符串
+		var str = "abc123哈哈";
+		//字符串与正则表达式进行匹配
+		//match()是string的方法  函数参数是正则对象reg 返回值是数组array
+		var result = str.match(reg);
+		//打印匹配结果
+		console.log(result);
+		//result 的四个结果属性 
+		//1.值 result[0] = "a" 
+		//2.索引 result.index = 0 
+		//3.数组长度 result.length = 1
+		//4.所匹配的原字符串内容 result.input = "abc123哈哈"
+		//下列属性均用来作为匹配上后的后续取值使用
+		//强烈不建议作为判断是否匹配上的判断条件
+		console.log(result[0]);
+		console.log(result.index);
+		console.log(result.length);
+		console.log(result.input);
+		//当没有匹配上的时候 result 返回的是null   
+		
+		
+		//1 或 12 代表的都是一个字符串 
+		//abc123哈哈 中有1  有12  没有13 所以无法匹配13 
+		var reg1 = new RegExp("12");
+		var res1 = str.match(reg1);
+		console.log(res1);
+		//哈  哈哈 3哈 都可以与str进行匹配
+		var reg2 = new RegExp("哈哈");
+		var res2 = str.match(reg2);
+		console.log(res2);
+		
+		
+		//编码 正则的基础就是Unicode编码
+		//"哈"的Unicode编码\u54c8  可以匹配Unicode编码
+		var reg3 = new RegExp("\u54c8");
+		var res3 = str.match(reg3);
+		console.log(res3);
+		console.log(escape("哈"));//%u54C8  基础就是Unicode编码  只是js做了一些处理
+		console.log(encodeURI("哈"));//%E5%93%88 基础就是URL编码
+		
+		
+		//归纳：
+		//正则表达式中可以写普通的英文 数字 汉字 字符串 也可以使用Unicode编码
+	</script>
+
+</html>

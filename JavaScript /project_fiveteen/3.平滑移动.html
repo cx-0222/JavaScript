@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>平滑移动</title>
+		<style type="text/css">
+			.div {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="div"></div>
+	</body>
+	<script type="text/javascript">
+		var div = document.querySelector(".div");
+		//定义一些变量：确定对应键是否按下
+		var lef = false;
+		var to = false;
+		var rig = false;
+		var bot = false;
+		document.onkeydown = function(e) {
+			var ev = e || event;
+			//当对应键按下后，对应变量变成true
+			switch(ev.keyCode) {
+				case 37:
+					lef = true;
+					break;
+				case 38:
+					to = true;
+					break;
+				case 39:
+					rig = true;
+					break;
+				case 40:
+					bot = true;
+					break;
+			}
+		}
+		//用一个定时器一直监听键盘，当按键对应变量为true时 实现移动
+		setInterval(function() {
+			if(lef) {
+				div.style.left = (div.offsetLeft - 1) + "px";
+			}
+			if(to) {
+				div.style.top = (div.offsetTop - 1) + "px";
+			}
+			if(rig) {
+				div.style.left = (div.offsetLeft + 1) + "px";
+			}
+			if(bot) {
+				div.style.top = (div.offsetTop + 1) + "px";
+			}
+		}, 10);
+		//当按下的键被抬起时，对应变量变为false ，所以 定时器里的相对运动也会停止！
+		document.onkeyup = function(e) {
+			var ev = e || event;
+			switch(ev.keyCode) {
+				case 37:
+					lef = false;
+					break;
+				case 38:
+					to = false;
+					break;
+				case 39:
+					rig = false;
+					break;
+				case 40:
+					bot = false;
+					break;
+
+			}
+		}
+		
+	</script>
+
+</html>

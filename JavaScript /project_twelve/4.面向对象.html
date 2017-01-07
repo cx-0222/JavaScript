@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>面向对象</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+	//对象定义：
+	//	var obj = {key1:value1,key2:value2,key3:value4,key4:value4}
+	var person = {name:"jiejie",age:25,gender:"female"}
+	console.log(person.name);
+	console.log(person.age);
+	console.log(person.gender);
+	
+	person.eat = function(){
+		console.log("这位姑娘在吃饭");
+	}
+	person.eat();
+	var p1 = {name:"jiejie",age:25,gender:"female"}
+	var p2 = {name:"qiangqiang",age:25,gender:"female"}
+	var p3 = {name:"jianjian",age:25,gender:"female"}
+	var pArr = [p1,p2,p3];
+	console.log(pArr);
+	
+	//利用数组打印qiangqiang
+	console.log(pArr[1].name);//qiangqiang
+	
+	
+	</script>
+</html>

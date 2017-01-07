@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM处理插入节点</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">
+			我是div1
+		</div>
+		<div class="div1">
+			我是div1
+		</div>
+	</body>
+	<script type="text/javascript">
+	//创建div
+		var newDiv = $('<div style="background-color: yellow;width: 50px;height: 50px;">我是添加的div</div>');
+		//1.添加到内部后面	在文本后面
+			//在div1 内部最后面添加 newDiv
+		//$('.div1').append(newDiv);
+			// 把 newDiv 添加到 .div1 内部最后方
+		//newDiv.appendTo($('.div1'));
+		
+		//2. 添加在div1 内部的最前面 在文本前面
+		//$('.div1').prepend(newDiv);
+		//newDiv.prependTo($('.div1'));
+		
+		
+		$('.div1').prepend(function(n,v){
+			//插入到索引为1 的div1 的内部的最前面
+			if (n == 1) {
+				//return '<hr />'
+				return '<div style="background-color: yellow;width: 50px;height: 50px;"></div>'
+			}
+		});
+		
+		$('.div1').before(function(n,v){
+			//在索引为1 的div1 前面插入元素  即在两div之间
+			if (n == 1) {
+				return '<hr />'
+				//return '<div style="background-color: yellow;width: 50px;height: 50px;"></div>'
+			}
+		});
+		//兄弟
+		//$('.div1') 取得是两个.div1
+		//$('.div1').after('<p>你是p</p>');
+		//$('.div1').before('<p>你是p</p>');
+	</script>
+</html>

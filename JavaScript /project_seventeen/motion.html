@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>motion页面</title>
+		<script type="text/javascript">
+			window.onload = function() {
+				btn.onclick = function() {
+					history.go(-1); //回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			#btn {
+				width: 97vw;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="btn">设备摇晃</div>
+		<p id="ctx"></p>
+	</body>
+	<script type="text/javascript">
+		//	var count = 0;
+
+		window.ondevicemotion = function() {
+			if(window.DeviceMotionEvent) {
+				//alert("设备支持摇晃");
+				window.addEventListener("devicemotion", deMotionFn, false);
+
+			} else {
+				//alert("设备不支持摇晃");
+			}
+			
+			
+			//通过设置 时间戳 达到多长时间内的事件算作一个事件
+			var passTime = 0; //获取过去时间  是全局时间
+			var x = y = z = pass_x = pass_y = pass_z = 0;
+			var speed = 10;//幅度
+			function deMotionFn(ev) {
+				//该事件函数会一直触发
+				//通过motion事件获取重力感应对象
+				//console.log(ev.accelerationIncludingGravity.x);
+				var acceleration = ev.accelerationIncludingGravity;
+				var curTime = new Date().getTime(); //获取当前时间
+				if(curTime - passTime > 300) { //300ms监测一次
+					passTime = curTime;
+					ctx.innerText = "x:" + acceleration.x;
+					ctx.innerText += "\ny:" + acceleration.y;
+					ctx.innerText += "\nz:" + acceleration.z;
+					
+					x = acceleration.x;
+					y = acceleration.y;
+					z = acceleration.z;
+					var disX = Math.abs(x - pass_x);
+					var disY = Math.abs(y - pass_y);
+					var disZ = Math.abs(z - pass_z);
+					//if (disX > speed && disY > speed && disZ > speed) {
+					if ((disX*disY*disZ)/30 * 1000 > 800) {
+						alert("摇晃了");
+					}
+					pass_x = x;
+					pass_y = y;
+					pass_z = z;
+				}
+
+			}
+		}
+	</script>
+
+</html>

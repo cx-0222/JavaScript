@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html id="html">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>老师练习讲解</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//正则表达式获取节点
+			var html = document.getElementById("html");
+			var str = html.innerHTML;
+			//console.log(str);
+			//①获取所有标签
+			//？跟在* + ？ {n} {n，m} {n，}之后 表示 非贪心的 两个都满足就取最短的 /<.+?>/g
+			var reg = /<[^<>?]+>/g
+			var arr = str.match(reg);
+			console.log(arr);
+			
+			
+			var str1 = "aoooo";
+			var reg1 = /ao+/g;//匹配aooooo + 至少包含一个
+			var reg2 = /ao+?/g;//匹配ao +？ 表示非贪心的 在满足条件的字符串中 取最短的
+			var reg3 = /ao*?/;//a * 包含零个或多个  *？ 在零个或多个中取最短，即零个
+			var reg4 = /ao?/;//a  ？ 包含零个或一个  ？？在零个或多个中取最短，即零个
+			var arr1 = str1.match(reg1);
+			var arr2 = str1.match(reg2);
+			var arr3 = str1.match(reg3);
+			var arr4 = str1.match(reg4);
+			console.log("arr1:" + arr1);
+			console.log("arr2:" + arr2);
+			console.log("arr3:" + arr3);
+			console.log("arr4:" + arr4);
+			
+			
+			
+			var str2 = "AbcdAbcdA";
+			var reg5 = /A\w+A/g;//匹配AbcdAbcdA
+			var reg6= /A\w+?A/g;//AbcdA
+			var arr5 = str2.match(reg5);
+			var arr6 = str2.match(reg6);
+			console.log("arr5:" + arr5);
+			console.log("arr6:" + arr6);
+			
+			//在单一匹配中，直接匹配上的结果称之为主项，存在数组的第零位，
+			//一级()中的表达式称之为第一子项，形参的第一子项结果存在数组的第一位
+			//如果一级子项中还有()。称之为第二子项，道理与第一子项相同
+			
+			var reg7= /A(\w+)A/;//(子项) 单一匹配 不可以与g i 等属性同用 同用后打印出"AbcdAbcdA" 不存在子选项了
+			var arr7 = str2.match(reg7);
+			console.log(arr7);//"AbcdAbcdA", "bcdAbcd",
+			
+			
+			
+		</script>
+	</body>
+
+</html>

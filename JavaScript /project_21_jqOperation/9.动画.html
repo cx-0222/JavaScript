@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>动画</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div"></div>
+	</body>
+	<script type="text/javascript">
+	/*
+	 //
+	//显示 slow 是代表时间， 也可以直接写时间
+		//$('div').show('slow');
+		//函数在动画结束后进行调用
+		$('div').show(3000,function(){
+			$('div').hide(3000,function(){
+				
+			});
+		});
+		
+		
+		//开关 
+		$(document).click(function(){
+			$('div').toggle("fast");
+		})
+	*/
+	/*
+	 //从上到下 卷帘
+		$('div').slideDown(3000,function(){
+			$('div').slideUp(3000,function(){
+				
+			});
+		});
+		
+		
+		//开关 
+		$(document).click(function(){
+			$('div').slideToggle("fast");
+		})
+	*/
+	/*
+	//淡入淡出
+		$('div').fadeIn(3000,function(){
+			$('div').fadeOut(3000,function(){
+				
+			});
+		});
+		
+		*/
+		
+		//淡入到透明度为0.5(0~1)
+		$('div').fadeTo(3000,0.5);
+		//开关 
+		$(document).click(function(){
+			$('div').fadeToggle("fast");
+		})
+	</script>
+</html>

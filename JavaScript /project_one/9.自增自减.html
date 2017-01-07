@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自增自减</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//常量不可自增自减  只有变量可以自增自减
+		var i = 4;
+		var j;
+		//  第一种：i++  j=i=4；i=i+1=5 优先级小于等号
+		//j = i++;
+		//第二种：++i  i=i+1=5；j=i=5 优先级大于等号（优先级最大）
+		j=++i;
+		console.log(i);//输出5
+		//console.log(j);//输出4
+		console.log(j);//输出5
+		
+		
+		var a = 10;
+		var b = 20;
+		var c = 10;
+		//var d = a + b < 31;
+		//console.log(d);//输出true
+		var d = a + (b > c) ;
+		console.log(d);//输出11 加了()表示先算后面 因为 b>c 为true true 默认隐式转换为 1  所以d=a+1=10+1=11
+		
+		
+	</script>
+</html>

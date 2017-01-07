@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.wrap {
+				margin: 20px auto 0;
+				width: 90%;
+				background-color:antiquewhite;
+				border: 1px solid black;	
+				overflow: hidden;
+			}
+			.wrap ul {
+				float: left;
+				width: 24%;
+				margin: 10px 0.5%;
+				list-style: none;
+			}
+			.wrap ul li {
+				font-size: 50px;
+				text-align: center;
+				background-color: #DC9642;
+				margin: 10px 0;
+				border: 1px solid black;
+				/*border-radius: 10px;*/
+				/*box-shadow: 0 0 5px 2px #2F9B3A;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap = document.getElementsByClassName("wrap")[0];
+		//获取所有的ul
+		var uls = document.getElementsByTagName("ul");
+		//产生随机数
+		function random(min,max){
+			return parseInt(Math.random()*(max-min+1)+min);
+		}
+		//创建li 
+		var num = 0;
+		function createLi(count){//count 表示创建多少个li
+			for(var i = 0; i< count; i++){
+				//创建li 
+				var li = document.createElement("li");
+				num++;
+				li.innerHTML = num;
+				//设置li的高度为100~300之间的随机数
+				li.style.height = random(100,300) + "px";
+				//console.log(li.style.height);
+				//把li拼接到高度最短的ul中
+				var minHeightUl = uls[0];//先将uls[0]设为最小高度的ul
+				//通过遍历比较ul(li)的高度，找到最小的那个
+				for(var j = 0; j < uls.length; j++){//for循环中的for循环不可以用同一个循环变量！！！！
+					if(minHeightUl.offsetHeight > uls[j].offsetHeight){
+						minHeightUl = uls[j];
+					}
+				}
+				minHeightUl.appendChild(li);	
+			}
+		}
+		createLi(1000/60);
+		//var t1 = setInterval(function(){
+			//if(document.body.scrollTop > wrap.offsetHeight-document.documentElement.clientHeight){
+			//	createLi(5);
+			//}
+		//},30);
+		window.onscroll = function(){		
+			var cTop = document.documentElement.clientHeight;
+			console.log(cTop);
+			var oTop = document.documentElement.offsetHeight;
+			console.log(oTop);
+			var sTop = document.documentElement.scrollTop || document.body.scrollTop;
+			console.log(sTop);
+			if(sTop >= (oTop-cTop)){
+				createLi(1);
+			}
+		}
+	</script>
+</html>

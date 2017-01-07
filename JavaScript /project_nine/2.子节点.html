@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--问题：sup 有多少个子节点-->
+		<!--提示：换行也是文本-->
+		<!--答：5  ①两个换行+一段文字 3  ②注释 8 ③换行 3 ④p标签 1 ⑤换行 3-->
+		<div id="sup">
+			这是一段普通的文字
+			<!--注释是节点么？-->
+			<p>我是p标签</p>
+		</div>
+		
+		<div id="box">
+			<div id="div1"></div>
+			<div id="div2"></div>
+			<div id="div3"></div>
+			<div id="div4"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var sup = document.getElementById("sup");
+		console.log(sup);//childNodes(子节点(数组)): NodeList[5] 
+		var childNodes = sup.childNodes;//childNodes：所有子节点 
+
+		console.log(childNodes);//[text, comment, text, p, text]
+		var children = sup.children;//children：所有是标签类型的子节点
+		console.log(children);//[p]
+		//parentElement: elemrnt是指标签  节点不是
+
+
+		var box = document.getElementById("box");
+		var childNodes = box.childNodes;
+		console.log(childNodes);//7 [text, div#div1, text, div#div2, text, div#div3, text, div#div4, text]
+		//一般操作节点都是对于标签而言，所以常用children而非childNodes
+	</script>
+</html>

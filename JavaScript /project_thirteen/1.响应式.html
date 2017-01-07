@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>响应式布局</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.wrap {
+				width: 80%;
+				height: 100px;
+				margin: 0 auto;
+				background-color: red;
+			}
+			
+			.nav {
+				width: 60%;
+				height: 100%;
+				background-color: black;
+				margin: 0 auto;
+			}
+			
+			.loge {
+				height: 100%;
+				float: left;
+			}
+			
+			.loge>img {
+				height: 80%;
+				margin: 10px 0;
+			}
+			
+			.nav-wrap {
+				height: 100%;
+				float: right;
+				overflow: hidden;
+			}
+			
+			.nav-wrap ul {
+				list-style: none;
+				/*float: right;*/
+			}
+			
+			.nav-wrap ul li {
+				float: left;
+				margin-right: 10px;
+				color: red;
+				font-size: 30px;
+				line-height: 100px;
+			}
+			
+			@media only screen and (min-width: 1040px) and (max-width: 1380px) {
+				.nav-wrap ul li {
+					margin-right: 8px;
+					color: red;
+					font-size: 15px;
+					line-height: 100px;
+				}
+			}
+			
+			@media only screen and (min-width: 960px) and (max-width: 1040px) {
+				.wrap {
+					background-color: blue;
+					height: 80px;
+				}
+				.loge>img {
+					margin: 8px 0;
+				}
+				.nav-wrap ul li {
+					margin-right: 7px;
+					color: red;
+					font-size: 15px;
+					line-height: 80px;
+				}
+			}
+			
+			@media only screen and (min-width: 850px) and (max-width: 960px) {
+				.wrap {
+					background-color: yellow;
+					height: 60px;
+				}
+				.loge>img {
+					margin: 6px 0;
+				}
+				.nav-wrap ul li {
+					margin-right: 6px;
+					color: red;
+					font-size: 15px;
+					line-height: 60px;
+				}
+			}
+			
+			@media only screen and (min-width: 640px) and (max-width: 850px) {
+				.wrap {
+					background-color: olive;
+					height: 40px;
+				}
+				.loge>img {
+					margin: 4px 0;
+				}
+				.nav-wrap ul li {
+					float: left;
+					margin-right: 5px;
+					color: red;
+					font-size: 15px;
+					line-height: 40px;
+				}
+			}
+			
+			@media only screen and (min-width: 320px) and (max-width: 640px) {
+				.wrap {
+					background-color: hotpink;
+					height: 20px;
+				}
+				.loge>img {
+					margin: 2px 0;
+				}
+				.nav-wrap ul li {
+					width: 30px;
+					float: left;
+					margin-right: 4px;
+					color: red;
+					font-size: 12px;
+					line-height: 20px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="nav">
+				<div class="loge">
+					<img src="img/1.png" />
+				</div>
+				<div class="nav-wrap">
+					<ul>
+						<li>益达益达</li>
+						<li>绿箭绿箭</li>
+						<li>炫迈炫迈</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

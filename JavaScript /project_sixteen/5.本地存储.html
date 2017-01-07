@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>本地存储</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//浏览器窗口关闭，数据就被清除
+		//赋值
+		sessionStorage.setItem("name","zhangsan");
+		var a1 = sessionStorage.getItem("name");
+		console.log(a1);
+		//取值
+		var a2 = sessionStorage.getItem("age");
+		console.log(a2);//null
+		
+		
+	//本地存储 永久存储 除非手动清除 也有setItem() getItem()
+		//赋值
+		 localStorage.name = "zhangsan";
+		 //取值
+		 var b1 = localStorage.name;
+		 console.log(b1);
+		 localStorage.removeItem("name");//移除key键name
+		 localStorage.clear()//清空本地存储
+		 console.log(localStorage.name);
+	</script>
+</html>

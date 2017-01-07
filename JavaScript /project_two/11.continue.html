@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1-10之间循环，打印前五个数
+		//循环执行了10次
+//		for(var i = 1; i <= 10; i++){
+//			while(i<=5){
+//				console.log(i);
+//				i++;
+//			}
+//		}
+	//循环执行了5次	
+		for(var i = 1; i <= 10; i++){
+				console.log(i);
+				if(i == 5){
+					break;
+				}	
+		}
+		
+		//1-100中被7整除的最大的一个数  
+		//循环执行2次
+		for(var i = 100; i>=1;i--){
+			if(i%7==0){
+				max = i;
+				break;
+			}
+		}
+		
+		//不打印6
+		for(var i = 1; i <= 10; i++){
+				if(i == 6){
+					continue;//跳出本次循环，进入下一次循环（只是i=6这次不执行了，i=7还会执行）
+				}	
+				console.log(i);		
+		}
+		//break 结束循环体，执行循环体外的语句
+		//continue 结束本次循环，进入下一次循环
+		
+		
+	</script>
+</html>

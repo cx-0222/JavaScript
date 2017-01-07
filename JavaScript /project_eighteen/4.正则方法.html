@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>正则方法</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	
+	//1.匹配正则str.match(reg) 将结果存储在数组中返回出来
+		var str = "abc123哈哈";
+		var reg = /2/;
+		var arr = str.match(reg);
+		console.log(arr);
+		
+	//2.查找正则str.search(reg) 返回值为number类型 将查找到的第一个元素所在的索引打印出来
+		//如果没查找，返回-1
+		var num = str.search(reg);
+		console.log(num);//4
+	
+	//3.查找替换str.replace(reg,"two") 返回值是string类型 
+		var newStr = str.replace(reg,"two");//查找正则reg 将匹配上的替换成two
+		console.log(newStr);//abc1two3哈哈
+		
+		
+	//4.分割字符串str.split(reg,"1") 通过正则表达式对字符串进行分割，limit表示限制分割后的数组的最大长度 此处的reg只是一个分割符,
+
+		var splitArr = str.split(reg,"1");
+		console.log(splitArr);//["abc1"]
+		
+	//正则对象的函数
+		//5.reg.exec(str) 拿正则去索引字符串，返回值是数组类型 其返回值数组没有多大使用价值，只做有值无值判断
+		//该方法不常用！！
+		var regArr = reg.exec(str);
+		console.log(regArr);
+		
+		//6.reg.test(str) 
+		//只用于正则与字符串进行匹配
+		//匹配上结果为true  反之为false
+		var bol = reg.test(str);
+		console.log(bol);//true
+		
+		// \s 查找空白格
+		var ss = " 12 34 56\n78";
+		var rr = /\s/g;
+		
+		var ress = ss.match(rr);
+		console.log(ress);//[" ", " ", " ", "↵"]
+		
+		var ssArr = ss.split(rr);
+		console.log(ssArr);//["", "12", "34", "56", "78"]???
+		console.log(ssArr.length);//5
+	</script>
+</html>

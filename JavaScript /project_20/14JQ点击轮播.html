@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.wrap {
+				position: relative;
+				width: 220px;
+				height: 220px;
+				/*overflow: hidden;*/
+				border: 2px solid black;
+			}
+			.stage {
+				width: 9999px;
+				height: 220px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			li {
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+				width: 50px;
+				height: 25px;
+				border: 1px solid #E5E4E2;
+				font: normal 16px/25px "微软雅黑";
+				text-align: center;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="stage">
+				<img src="img/1.jpg" alt="" />
+				<img src="img/2.jpg" alt="" />
+				<img src="img/3.jpg" alt="" />
+				<img src="img/4.jpg" alt="" />
+			</div>
+		</div>
+		<ul class="ul">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		$(function($) {
+			$('li').click(function() { //应该给li绑定 才是循环绑定 用ul找不到li的索引 只能找到ul的索引
+				//alert($(this).index());
+				$('.stage').animate({//数值做运算不需要加引号
+					left: -$(this).index() * $("img").width()
+				})
+			})
+		})
+	</script>
+
+</html>

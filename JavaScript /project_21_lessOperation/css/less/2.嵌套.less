@@ -1,0 +1,22 @@
+@num: 100px;
+@maxNum: 300px;
+.outer {
+    width: @maxNum;
+    height: @maxNum;
+    // 在内部直接使用的 & 代表自己
+    //第一层
+    & {
+        background-color: blue;
+    }
+    //inner一定得是嵌套在里面的 
+    //第二层 按照DOM树结构嵌套属性css
+    .inner {
+        width: @num;
+        height: @num;
+        background-color: chartreuse; 
+        //第三种 直接可以在内部嵌套伪类
+        &:hover {
+            background-color: yellow;
+        }
+    }
+}

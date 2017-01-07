@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>if 选择语句</title>
+	</head>
+	<body>	
+	</body>
+	
+	<script type="text/javascript">
+	
+	//if 条件语句
+	/*
+	 * if(条件表达式){
+			语句1;
+		}else {
+			语句2;
+		}
+		语句3;
+	 */
+	// { }:作用域 变量在自身作用域或子作用域中起作用 
+	//相同作用域不能出现同名变量，会报重命名错误，不同作用域可以
+	//变量在出了自身所在的作用域，就不存在
+	// if 后的{}以及else 后的{}可以shenglue
+	// 但 {} 省略后 只能识别一条语句
+	/*
+		var x = prompt("请输入一个数：");
+		var y;
+		if(x > 2){
+			y = 3;
+		}else {
+			y = 0;
+		}
+		alert(y);
+	*/
+		
+		var a =parseInt(alert("给我买10个包子"));
+		var b = prompt("看见卖西瓜的买1个，没看见不买");
+		if(b == 1){
+			a = 1;
+			alert("老婆我买了" +a+"个包子，哈哈");
+			alert("靠，你个傻逼！");
+		}else{
+			a = 10;
+			alert("老婆我买了" +a+"个包子，哈哈");	
+		}
+		
+		
+		
+		var x = 3;
+		var y = 0;
+		var z = 9;
+		/*
+		if(x==3){
+			y = 2;
+		}else{
+			y = 1;
+		}
+		console.log(y);//输出2
+		*/
+		
+		/*
+		if(x>4){
+			x = y;
+		}else{
+			x = z;
+		}
+		console.log(x);//输出9
+		*/
+		
+		/*
+		if(x>y){
+			x = y + 1;
+		}else{
+			x = y - 1;
+		}
+		console.log(x);//输出1
+		*/
+		/*
+		if(x>y || x<z){
+			x = z;
+		}else{
+			x = y;
+		}
+		console.log(x);//输出9
+		*/
+	</script>
+	
+</html>

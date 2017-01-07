@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>类型转换</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var num = "10";
+		console.log(typeof num);
+		console.log(num);
+		
+		//弱类型转换
+		/*
+		num -= 0;
+		console.log(typeof num);
+		console.log(num);
+		*/
+		//因为  + 在JS 中又歧义 当两边为数值时  为加号  但两边有一边为字符串类型时，为连字符  得到的仍为字符！！！！！
+		/*
+		num += 10;
+		console.log(typeof num);//输出 string
+		console.log(num);//输出 1010
+		*/
+		//强类型转换
+		//强类型转换 内部不会改变参数的类型
+		//而是将改变了类型的数作为函数值返回出来，需要变量来接收
+		/*
+		a = Number(num);//强制类型转换
+		console.log(typeof a);
+		console.log(a);
+		console.log(typeof num);//num 本身还是string类型的
+		console.log(num);
+		
+		a = Object(num);
+		console.log(typeof a);//输出Object
+		console.log(a);//String {0: "1", 1: "0", length: 2, [[PrimitiveValue]]: "10"}
+	
+		a = Boolean(num);//非零(空)即真(哪怕是负数，也为真，只有零是为假)，非真即假，
+						//零：0 空：null NaN "" undefined false 
+		console.log(typeof a);//输出Boolean
+		console.log(a);//输出true
+		
+		var b = "10.5";
+		//b = parseInt(b);	
+		//console.log(typeof b);//输出number
+		//console.log(b);//输出10
+		
+		b = parseFloat(b);	
+		console.log(typeof b);//输出number
+		console.log(b);//输出10.5
+		//不管强类型转换还是弱类型转换，应该注意变量的值是可以互通的
+		var w = "abcdef";
+		w = Number(w);
+		console.log(typeof w);//输出number
+		console.log(w);//输出NaN 非数值类型
+		*/
+	</script>
+</html>

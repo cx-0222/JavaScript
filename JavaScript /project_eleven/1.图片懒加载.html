@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>滚动懒加载</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			img {
+				
+				width: 100vw;
+				height: 10px;
+				
+			}
+			#img1 {
+				/*margin-top: 100vh; 让屏幕滑动*/
+				margin-top: 100vh;
+				margin-bottom: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<img id="img1" src="" date-src="img/44.jpeg"/>
+		<img id="img2" src="" date-src="img/44.jpeg"/>
+	</body>
+	<script type="text/javascript">
+	//属于windows的监听事件 屏幕是否滑动
+	//屏幕滑动事件 (会监听屏幕滑动，相隔一定时间触发一次，并非一段距离也不是1px 所以判断时不要写 == )
+		window.onscroll = function(){
+			//第一步，让屏幕能滑动
+			//document.documentElement.scrollTop  IE的
+			//document.body.scrollTop  万维网规定的
+			//document.documentElement.scrollTop || document.body.scrollTop;前者不起作用，则取后者值
+			//第二步 scrollTop 往上滑得偏移量
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			console.log(scrollTop);//0
+			var img1 = document.getElementById("img1");
+			var img2 = document.getElementById("img2");
+			console.log(scrollTop);
+			if(scrollTop >= 200){
+				var a = img1.getAttribute("date-src");
+				//console.log(a);
+				img1.setAttribute("src",a);
+				img1.style.height = "auto"
+			}
+			if(scrollTop >= 610){
+				var b = img2.getAttribute("date-src");
+				//console.log(a);
+				img2.setAttribute("src",b);
+				img2.style.height = "auto"
+			}
+		}
+	</script>
+</html>

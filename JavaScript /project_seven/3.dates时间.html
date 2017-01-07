@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Date日期</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var myDate = new Date();//new 就是创建对象
+	console.log(typeof myDate);//object
+
+//获取四位数的年份
+	var year = myDate.getFullYear();
+	console.log(year);//2016
+
+//从0开始。0表示1月！！！
+	var month = myDate.getMonth();
+	console.log(month);//输出9 表示10月
+
+
+//获取月份中的天数，即多少号
+	var dates = myDate.getDate();
+	console.log(dates);//25
+
+//从星期天开始。星期天为一星期的第一天  星期从0开始！！！
+	var week = myDate.getDay();
+	console.log(week);//2
+
+//获取当前的毫秒数  Milliseconds 毫秒
+	var MSeconds = myDate.getMilliseconds();
+	console.log(MSeconds);
+//获取当前的时间  小时 分钟 秒数 
+	var hour = myDate.getHours();
+	var minute = myDate.getMinutes();
+	var second = myDate.getSeconds();
+//19 8 30 164	
+	console.log(hour,minute,second,MSeconds);
+
+//获得当前的毫秒数:获取从1970年1月1日到现在的毫秒数
+	var ms = myDate.getTime();
+	//14开头，13位
+	console.log(ms)
+
+//创建2000年1月1日 12:00:00:000
+	var date1 = new Date(2000,0,1);//年，月，日  月从0开始!!! Sat Jan 01 2000 00:00:00 GMT+0800 (CST)
+	console.log(date1);
+
+	var date2 = new Date(2000,0,1,12,0,0);//Sat Jan 01 2000 12:00:00 GMT+0800 (CST)
+	console.log(date2);
+
+	var date3 = new Date("Oct 1, 2000");//月份和日期之间用空格隔开  Sun Oct 01 2000 00:00:00 GMT+0800 (CST)
+	console.log(date3);
+
+	var date4 = new Date("Oct 1, 2000,12:00:00");//Sun Oct 01 2000 12:00:00 GMT+0800
+	console.log(date4);
+	
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>判断密码等级</title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		var rules = [{
+			reg: /\d+/,
+			weight: 2
+		}, {
+			reg: /[a-z]+/,
+			weight: 4
+		}, {
+			reg: /[A-Z]+/,
+			weight: 8
+		}, {
+			reg: /[~!@#\$%^&*\(\)\{\};,.\?\/'"]/,
+			weight: 16
+		}];
+
+		var strongLevel = {
+			'0-10': '弱',
+			'10-20': '中',
+			'20-30': '强'
+		};
+		var testPasswords = ['123456', 'abc123', 'abA123', 'B1', '#@123', '@#12abcABC'];
+		for(var i = 0; i < testPasswords.length; i++) {
+			var weight = 0;
+			for(var j = rules.length - 1; j >= 0; j--) {
+				if(rules[j].reg.test(testPasswords[i])) {
+					weight |= rules[j].weight;
+				}
+			}
+			var key = '20-30';
+			if(weight <= 10) key = '0-10';
+			else if(weight <= 20) key = '10-20';
+			console.log(testPasswords[i], strongLevel[key]);
+		}
+	</script>
+
+</html>

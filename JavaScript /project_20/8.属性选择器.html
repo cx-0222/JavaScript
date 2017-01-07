@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>属性选择器</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: olive;
+				margin: 10px auto;
+				font: normal 20px/100px "微软雅黑";
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="div" title="ahead">ahead</div>
+		<div class="div" title="Ahead">Ahead</div>
+		<div class="div" title="head">head</div>
+		<div class="div" title="head1">head1</div>
+		<div class="div" title="head2">head2</div>
+		<div class="div" id="div">empty</div>
+	</body>
+	<script type="text/javascript">
+	
+		$('div[class]').on('click',function(){
+			alert("有class属性的");
+		})
+		//有title全局属性
+		$('div[title]').on('click',function(){
+			alert("有title属性的");
+		})
+		//title 全局属性值为 head
+		$('div[title=head]').on('click',function(){
+			alert("有title = head属性的");
+		})
+		//title 值 以 head 开头的
+		$('div[title^=head]').on('click',function(){
+			alert("title值以head开头的");
+		})
+		//title 值 以 head 结尾的
+		$('div[title$=head]').on('click',function(){
+			alert("title值以head结尾的");
+		})
+		//title值包含head的
+		$('div[title*=head]').on('click',function(){
+			alert("title值包含head的");
+		})
+		
+		//复合型  div有class 且有 id 的
+		$('div[class][id]').on('click',function(){
+			alert("div有class 且有 id 的");
+		})
+	</script>
+</html>

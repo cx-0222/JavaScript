@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<ol id="ol">
+			<li class="li" id="li1"></li>
+			<li class="li" id="li2"></li>
+			<li class="li" id="li3"></li>
+			<li class="li" id="li4"></li>
+			<li class="li" id="li5"></li>
+			<li class="li" id="li6"></li>
+			<li class="li" id="li7"></li>
+			<li class="li" id="li8"></li>
+			<li class="li" id="li9"></li>
+			<li class="li" id="li10"></li>
+		</ol>
+		
+	</body>
+	
+		<script type="text/javascript">
+			//写一个ol 里面包含10个li ；通过js让其每个li里面出现对应的数字；
+			var li = document.getElementsByClassName("li");//获取class为li 的标签，返回一个数组
+			//console.log(li.length);//打印数组的长度
+			//console.log(li[li.length-1]);//输出下标为4的li
+
+			for(var i = 1; i <=li.length; i++){
+				li[i-1].value = i;
+				document.getElementById("li"+i).innerHTML = li[i-1].value;
+				
+			}
+	</script>
+
+	<!--<script type="text/javascript">
+		//输出一个p便签 样式可以在样式表中更改		
+		//document.write("<p>")
+		//document.write("gdfgdsgds")
+		//document.write("</p>")
+		//document.write("<ol>"); 打印一个ol列表  不需要在body中另写ol列表，直接输出
+		document.write("<ol>");
+		for(var i = 1; i <= 10; i++){
+			document.write("<li>" + i + "</li>");
+		}
+		document.write("</ol>");
+	</script>-->
+	
+	<!--<script type="text/javascript">
+		//不用for循环打印一个li值
+		//var li1 = document.getElementById("li1");
+		//li1.innerHTML = 1;
+		//console.log(li1);	
+		for(var i = 1; i <= 10; i++){
+			//document.getElementById("li" + i); 通过ById来与li建立
+			//"li" + i   ！！！！！！！
+			var li = document.getElementById("li" + i);
+			li.innerHTML = i;
+		}
+	</script>-->
+	
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模拟QQ消息发送</title>
+	</head>
+	<body>
+		<input id="inp" type="text" />
+		<div id="div"></div>
+	</body>
+	<script type="text/javascript">
+		var inp = document.all.inp;
+		var div = document.all.div;
+		
+		var count = 1;
+		document.onkeydown = function(e) {
+			var ev = e || event;
+			
+			if (ev.keyCode == 13 && ev.ctrlKey) {
+				div.innerText += (count++) + "、" + inp.value + "\n";
+				inp.value = ""
+			}
+		}
+		
+	</script>
+</html>

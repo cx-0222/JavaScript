@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数回调之四则运算</title>
+	</head>
+	<body>
+		函数回调之四则运算
+	</body>
+	<script type="text/javascript">
+		
+		function computer(callabck){
+			//完成两个数的四则运算
+			var num1 = prompt("请输入第1个数");
+			var num2 = prompt("请输入第2个数");
+			//获得的是字符串
+			num1 = parseFloat(num1);
+			num2 = parseFloat(num2);
+			var result = callabck(num1,num2);
+			alert("结果为" + result);
+		}
+		//加
+		function opAdd(num1,num2){
+			return num1+num2;
+		}
+		//减
+		function opSub(num1,num2){
+			return num1-num2;
+		}
+		//乘
+		function opMul(num1,num2){
+			return num1*num2;
+		}
+		//除
+		function opDivi(num1,num2){
+			return num1/num2;
+		}
+		
+		var method = prompt("请输入运算法则","如+");
+		switch(method){
+			case "+":computer(opAdd);break;
+			case "-":computer(opSub);break;
+			case "*":computer(opMul);break;
+			case "/":computer(opDivi);break;
+			default:alert("运算符号输入有误");break;
+		}
+	</script>
+</html>

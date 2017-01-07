@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>键盘控制移动</title>
+		<style type="text/css">
+			.div {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				top: 45%;
+				left: 47%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div"></div>
+	</body>
+	<script type="text/javascript">
+	var div = document.querySelector(".div");
+	//一次按键周期只触发一次，且在抬起按键时触发
+	//同时按住多个按键时，依次是抬起每个按键时，都会触发一次该方法
+		document.onkeyup = function(e){
+			var ev = e || event;
+			switch(ev.keyCode){
+				case 37: 
+					div.style.left = (div.offsetLeft - 10) + "px";
+					break;
+				case 38: 
+					div.style.top = (div.offsetTop - 10) + "px";
+					break;
+				case 39: 
+					div.style.left = (div.offsetLeft + 10) + "px";
+					break;
+				case 40: 
+					div.style.top = (div.offsetTop + 10) + "px";
+					break;
+				
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>键盘上下左右控制移动</title>
+		<style type="text/css">
+			.div {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="div"></div>
+	</body>
+	<script type="text/javascript">
+		var divKey = document.querySelector(".div");
+
+		document.onkeydown = function(e) {
+			//同一个变量(keycode)等于不同的值，不同的值，实现不同的效果 用switch语句！！！！！
+			//左 37 上 38 右 39 下 40  shift 16  ctrl 17 alt 18
+			var ev = e || event;
+			//console.log(ev.keyCode)
+			switch(ev.keyCode) {
+				case 37:
+					divKey.style.left = divKey.offsetLeft - 1 + "px";
+					break;
+				case 38:
+					divKey.style.top = divKey.offsetTop - 1 + "px";
+					break;
+				case 39:
+					divKey.style.left = divKey.offsetLeft + 1 + "px";
+					break;
+				case 40:
+					divKey.style.top = divKey.offsetTop + 1 + "px";
+					break;
+			}
+		//代码太多！！可读性太差
+			//if(ev.keyCode == 40){
+				//divKey.style.top = speed + 'px'
+			//}		
+			//if(ev.keyCode == 38){
+				//divKey.style.top = -speed + 'px'
+			//}
+			//if(ev.keyCode == 37){
+				//divKey.style.left = -speed + 'px'
+			//}	
+			//if(ev.keyCode == 39){
+				//divKey.style.right = speed + 'px'
+			//}
+		}
+	</script>
+
+</html>

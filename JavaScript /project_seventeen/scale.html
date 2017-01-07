@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>scale页面</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+		
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			.boxx.b {
+				margin: 150px auto;
+				width: 400px;
+				height: 400px;
+				background-color: red;
+			}
+			.boxx {
+				margin: 150px auto;
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">返回主页</div>
+		<div id="box" class="boxx b"></div>
+	</body>
+	<script src="js/touchjs.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		box.style.webkitTransition = "all ease 0.05s";
+		
+		touch.on(box,"touchstart",function(ev){
+			ev.preventDefault();
+		});
+		
+		var endScale = -2;
+		var Scale;
+		var dx;
+		var dy;
+		
+		touch.on(box,"pinchend",function(ev){
+			console.log(box.className);
+			if(box.className == "boxx b"){
+				console.log(11)
+				box.className = "boxx";
+			}
+			
+			Scale = ev.scale - 1;
+			Scale = endScale + Scale;
+			Scale = Scale > 4 ? 4 : Scale;
+			Scale = Scale < 1 ? 1 : Scale;
+			
+			if(Scale == 1){
+				box.addClass("boox");
+			}
+			
+			this.style.webkitTransform = "scale(" + Scale + ")";
+			console.log("当前的缩放比例为："+Scale);
+		});
+		
+		
+		touch.on(box,"pinchend",function(ev){
+			endScale = Scale;
+		});
+		
+		
+//		touch.on(box,"drag",function(ev){
+//			dx = dx || 0;
+//			dy = dy || 0;
+//			this.style.webkitTransform = "scale(" + Scale + ")";
+//			console.log("当前x值为："+ dx + "当前y值为："+ dy );
+//			var offx = dx + ev.x + "px";
+//			var offy = dy + ev.y + "px";
+//			this.style.webkitTransform = "translate3d(" + offx + "," + offy + ",0)";
+//		});
+//		
+//		touch.on(box,"dragend",function(ev){
+//			dx += ev.x;
+//			dy += ev.y;
+//		});
+	</script>
+</html>
+

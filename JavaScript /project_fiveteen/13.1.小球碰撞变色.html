@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>小球碰撞变色</title>
+		<style type="text/css">
+			#wrap {
+				width: 500px;
+				height: 400px;
+				border: 1px solid black;
+				position: relative;
+			}
+			
+			#ball1 {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				border-radius: 50%;
+				position: absolute;
+				top: 28px;
+				left: 99px;
+				font: normal 13px/50px "微软雅黑";
+				text-align: center;
+				color: white;
+			}
+			
+			#ball2 {
+				width: 50px;
+				height: 50px;
+				background-color: black;
+				border-radius: 50%;
+				position: absolute;
+				top: 400px;
+				left: 400px;
+				font: normal 13px/50px "微软雅黑";
+				text-align: center;
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="ball1">1</div>
+			<div id="ball2">2</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap = document.getElementById("wrap");
+		var ball1 = document.getElementById("ball1");
+		var ball2 = document.getElementById("ball2");
+		var color = ["yellow", "cyan", "blue", "purple", "green", "gray", "#00BFFF"]
+
+		//ball1 的起始位置
+		var ball1L = ball1.offsetLeft;
+		var ball1T = ball1.offsetTop;
+
+		//ball2 的起始位置
+		var ball2L = ball2.offsetLeft;
+		var ball2T = ball2.offsetTop;
+		//运动速率
+		var speed = 2;
+		//ball1 ball2 能运动的最大范围
+		var maxHeight = wrap.clientHeight - ball1.offsetHeight;
+		var maxWidth = wrap.clientWidth - ball1.offsetWidth;
+		//用bool型变量判断是否到达边界
+		var topToBottom1 = true;
+		var leftToRight1 = true;
+		var topToBottom2 = true;
+		var leftToRight2 = true;
+
+		
+		setInterval(function() {
+			//ball1 的上下
+			if(topToBottom1) {
+				ball1T += speed;
+				ball1.style.top = ball1T + "px";
+				if(ball1T >= maxHeight) {
+					col1()
+					topToBottom1 = false;
+				}
+			} else {
+				ball1T -= speed;
+				ball1.style.top = ball1T + "px";
+				if(ball1T <= 0) {
+					col1()
+					topToBottom1 = true;
+				}
+			}
+			//ball1 的左右
+			if(leftToRight1) {
+				ball1L += speed;
+				ball1.style.left = ball1L + "px";
+				if(ball1L >= maxWidth) {
+					col1()
+					leftToRight1 = false;
+				}
+			} else {
+				ball1L -= speed;
+				ball1.style.left = ball1L + "px";
+				if(ball1L <= 0) {
+					col1()
+					leftToRight1 = true;
+				}
+			}
+			//ball2 的上下
+			if(topToBottom2) {
+				ball2T += speed;
+				ball2.style.top = ball2T + "px";
+				if(ball2T >= maxHeight) {
+					col2()
+					topToBottom2 = false;
+				}
+			} else {
+				ball2T -= speed;
+				ball2.style.top = ball2T + "px";
+				if(ball2T <= 0) {
+					col2()
+					topToBottom2 = true;
+				}
+			}
+			//ball2 的左右
+			if(leftToRight2) {
+				ball2L += speed;
+				ball2.style.left = ball2L + "px";
+				if(ball2L >= maxWidth) {
+					col2()
+					leftToRight2 = false;
+				}
+			} else {
+				ball2L -= speed;
+				ball2.style.left = ball2L + "px";
+				if(ball2L <= 0) {
+					col2()
+					leftToRight2 = true;
+				}
+			}
+
+			//ball1 的圆心 半径
+			var x1 = ball1.offsetLeft + ball1.offsetWidth / 2;
+			var y1 = ball1.offsetTop + ball1.offsetHeight / 2;
+			var r1 = ball1.offsetWidth / 2;
+			//ball2 的圆心 半径
+			var x2 = ball2.offsetLeft + ball2.offsetWidth / 2;
+			var y2 = ball2.offsetTop + ball2.offsetHeight / 2;
+			var r2 = ball2.offsetWidth / 2;
+
+			var d = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+			if(d <= r1 + r2) {
+				//两球碰撞变色
+				col1();
+				col2();
+				//反弹
+				
+				
+			} else {
+				//不变
+			}
+
+		}, 10);
+
+		function col1() {
+			var col1 = Math.floor(Math.random() * 7);
+			ball1.style.background = color[col1];
+		}
+
+		function col2() {
+			var col2 = Math.floor(Math.random() * 7);
+			ball2.style.background = color[col2];
+		}
+		
+//		function pengzhuang(){
+//			ball1.style.top -= 2 +"px"
+//			ball1.style.left -= 2 +"px"
+//		}
+	</script>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box {
+				width: 400px;
+				height: 300px;
+				/*background-color: red;*/
+				border: 5px solid black;
+				position: relative;
+			}
+			
+			#move {
+				width: 50px;
+				height: 50px;
+				background-color: greenyellow;
+				border: 5px solid green;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div id="move"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box = document.all.box;
+		var move = document.all.move;
+		var timer = null;
+		//获取初始的距离
+		var ot = move.offsetTop;
+		var ol = move.offsetLeft;
+		//console.log(ot);//0
+		//console.log(ol);//0
+		//获得初始的速度
+		var speed = 2;
+		//最大高度  最大宽度
+		var maxHeight = box.clientHeight - move.offsetHeight;
+		var maxWidth = box.clientWidth - move.offsetWidth;
+		//找临界点
+		var goBottom = false; //是否到达底部
+		var goRight = false; //是否到达右边
+		box.onmouseenter = function() {
+				timer = setInterval(function() {
+					//第一步：设置动画  距离上面的距离加大 距离左边的距离加大
+					// ① 获取初始的距离  
+					// ② 获取每次移动的距离(速度)
+					//			ot = ot + speed;
+					//			move.style.top = ot + "px";//!!!!!!!涉及方位的一定要加 px ！！
+					//			
+					//			ol = ol + speed;
+					//			move.style.left = ol + "px";
+
+					//第二步：设置判断反弹的条件
+					// ① 找到它能运动的最大高度和宽度
+					// ② 找到要发生变化的临界值 ot == maxHeight(到达底部) 与 ot == 0(到达顶部) /ol == maxWidth(到达右边) 与 ol == 0(左边)
+					if(goBottom) {
+						//到达底部后往上反弹 直到碰到顶
+						ot = ot - speed;
+						move.style.top = ot + "px";
+						if(ot == 0) { //到顶
+							goBottom = false;
+						}
+					} else { //没到底部
+						ot = ot + speed;
+						move.style.top = ot + "px";
+						if(ot == maxHeight) { //到底
+							goBottom = true;
+						}
+					}
+
+					if(goRight) {
+						ol = ol - speed;
+						move.style.left = ol + "px";
+						if(ol == 0) {
+							goRight = false;
+						}
+					} else {
+						ol = ol + speed;
+						move.style.left = ol + "px";
+						if(ol == maxWidth) {
+							goRight = true;
+						}
+					}
+				}, 30);
+			}
+			//第三步 ： 鼠标进入开启定时器，鼠标离开就清空定时器
+		box.onmouseleave = function() {
+			clearInterval(timer);
+		}
+	</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>方括号</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	
+		//[abc] 查找方括号之间的任何字符,只是匹配单个字符 a或b或c，从左往右，找到即返回
+		//[^abc] [abc]的取反
+		var str = "abcABC";
+		var reg = /[^abc]/;
+		var arr = str.match(reg);
+		console.log(arr);//["a", index: 0, input: "abcABC"]
+		
+		//[^abc] [abc]的取反 只是匹配单个字符，除a或b或c外
+		var str2 = "abcABC";
+		var reg2 = /[^abc]/;
+		var arr2 = str2.match(reg2);
+		//做一次匹配，abc都不满足，A满足 则结果为A
+		//如果添加全局匹配g 则结果为A,B,C
+		console.log(arr2);//["A", index: 3, input: "abcABC"]
+		
+		
+		
+		//[\s\S]匹配所有单个字符
+		var str1 = " abcA.;123>哈哈\n{_}";
+		var reg1 = /[\s\S]/g;//\s\S 匹配所有字符
+		var arr1 = str1.match(reg1);
+		console.log(arr1);//[" ", "a", "b", "c", "A", ".", ";", "1", "2", "3", ">", "哈", "哈", "↵", "{", "_", "}"]
+	
+		
+		// [0-9],[a-z],[A-Z]	,[A-z]
+		//注：0~9 中或 a~z中或 A~Z中任意一个字符
+		var str3 = "abcABC";
+		var reg3 = /[A-z]/g;
+		var arr3 = str3.match(reg3);
+		console.log(arr3);//["a", "b", "c", "A", "B", "C"]
+	
+	</script>
+</html>

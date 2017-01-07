@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	
+	</body>
+	<script type="text/javascript">
+		//常量：在程序运行过程中，不变的量
+		//变量：在程序运行过程中，可变的量
+		//int char string array abject ....强类型语言
+		//js是弱类型语言，将强类型语言均弱化为用 var 定义
+		var a;
+		//数据类型 number
+		//alert(typeof a);//typeof()函数：用来查看变量类型
+		a = 10;//变量赋值，如果是第一次赋值操作，可以角变量的初始化
+		//直接弹出变量名，显示的是变量所存储的内容
+//		alert(a);
+//		alert(typeof(a));
+//		alert(typeof a);
+		var b = 3;//定义变量并初始化
+		//alert(b);
+		//alert(typeof b);
+		
+		var x;
+		x = (84-4)/8;
+//		document.write(x);
+		
+		//变量名命名规则：
+			//1、由字母，下划线，数字，美元符构成；
+			//2、不可以数字开头
+			//3、可以全部小写，也可以采用驼峰命名法
+			//4、变量名不能与系统保留字或关键字同名
+			//5、变量名大小写敏感
+			
+			
+			
+			//变量的类型不在于var 而在于变量所赋的值代表的数据类型
+			//数据类型：undefined number string boolean object function  
+			
+			//b = '123';  ==  b ="123";
+			b ="123";
+//			document.write(typeof b);
+//			document.write(b);
+			 b = new Array (1,2,3,4,5);
+//			 document.write(typeof b);
+//		     document.write(b);
+			
+			
+			b = function(){}
+//			 document.write(typeof b);
+//		     document.write(b);
+			b = null;
+//			 document.write(typeof b);
+//		     document.write(b);
+			
+			b = '"i" love "you"';
+//			document.write(b);
+
+			//转义字符是  \ 这个 方向不可以弄反	
+			//\"就代表能转义的"因为""被系统占用，用户想用，必须转义
+			//  \n 代表回车
+			b = '"i" \'love\' "you"';
+			document.write(b);
+			b ='"i"'+ "'love'" + '"you"'; 
+	</script>
+</html>

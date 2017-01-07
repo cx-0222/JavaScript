@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜me</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#box {
+				width: 350px;
+				height: 350px;
+				border: 1px solid gainsboro;
+				position: relative;
+			}
+			#move {
+				width: 140px;
+				height: 140px;
+				background-color: rgba(255,255,0,0.3);
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			#bimg {
+				/*宽高与slider的宽高比 = 小图片与大图片的比*/
+				/*否则没有display none的时候  会有bug*/
+				width: 320px;
+				height: 320px;
+				/*border: 1px solid gainsboro;*/
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				left: 350px;
+				display: none;
+			}
+			#b_bimg {
+				width: 800px;
+				height: 800px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/xiao.jpg"/>
+			<div id="move"></div>
+			<div id="bimg">
+				<img id="b_bimg" src="img/da.jpg"/>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var bbox = document.getElementById("box");
+		var bmove = document.getElementById("move");
+		var bbimg = document.getElementById("bimg");
+		var b_bimg = document.getElementById("b_bimg");
+		
+		bbox.onmouseover =  function(){
+			bmove.style.display = "block";
+			bbimg.style.display = "block";
+		}
+		bbox.onmouseout = function(){
+			bmove.style.display = "none";
+			bbimg.style.display = "none";
+		}
+		
+		bbox.onmousemove = function(e){
+			var ev = e || event;
+			//详解见img文件夹
+			//鼠标相对于视口的位置
+			var x = ev.clientX;
+			var y = ev.clientY;
+			//box相对于视口的位置
+			var t = bbox.offsetTop;
+			var l = bbox.offsetLeft;
+			//move相对于box的位置 
+			var _left = x - l - bmove.offsetWidth/2; 
+			var _top = y - t - bmove.offsetHeight/2;
+			//判断move是否出box得边界
+			if(_top < 0){
+				_top = 0;
+			}else if(_top > bbox.offsetHeight - bmove.offsetHeight){
+				_top = bbox.offsetHeight - bmove.offsetHeight;
+			}
+			if(_left < 0 ){
+				_left = 0;
+			}else if(_left > bbox.offsetWidth - bmove.offsetWidth){
+				_left = bbox.offsetWidth - bmove.offsetWidth;
+			}
+			//设置move的位置
+			bmove.style.top = _top + "px";
+			bmove.style.left = _left + "px";
+			
+			//计算移动比例 move现在的坐标占可移动范围的比例
+			var w = _left/(bbox.offsetWidth - bmove.offsetWidth);
+			var h = _top/(bbox.offsetHeight - bmove.offsetHeight);
+			
+			//计算大图的位置
+			var b_bimg_top = (b_bimg.offsetHeight - bbimg.offsetHeight)*h;
+			var b_bimg_left = (b_bimg.offsetWidth - bbimg.offsetWidth)*w;
+			
+			//设置大图的位置
+			b_bimg.style.top = -b_bimg_top + "px";
+			b_bimg.style.left = -b_bimg_left + "px";
+		}
+	</script>
+</html>

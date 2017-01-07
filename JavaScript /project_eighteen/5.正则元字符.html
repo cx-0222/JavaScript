@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>正则元字符</title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var str = "  12 34 	56\n78";
+		var reg = /\s/;
+		var arr = str.split(reg);
+		console.log(arr);
+
+		//arr.shift();//数组从头部删除元素
+		//arr.splice(0, 2); //数组从第0个位置开始删除，删除长度为2的元素(删两个)
+		//arr.splice(2, 1); //从数组第二个位置开始删除，删除第长度为1的元素(删1个)
+		//console.log(arr);
+		/*
+				//自己给数组封装一个方法
+				Array.prototype.indexOf = function(val) {
+					//console.log("this:" + this);//this 指当前数组arr
+					for(var i = 0; i < this.length; i++) {
+						if(this[i] == val){
+							//console.log(i);
+							return i;
+						} 	
+					}
+					return -1;
+				}
+				Array.prototype.remove = function(val) {
+					var index = this.indexOf(val);
+					if(index > -1) {
+						this.splice(index, 1);
+					}
+				}
+				
+				for(var i in arr){//遍历数组arr
+					arr.remove("");
+				}
+				
+				console.log(arr);
+		*/
+
+		/*
+				var newArr = [];
+				for(var i = 0; i < arr.length; i++){
+					if(arr[i] != ""){//将不是空的元素放进新数组
+						newArr.push(arr[i]);
+					}
+				}
+				console.log("newArr:"+ newArr);
+		*/
+
+		/*
+				for(var i = 0; i < arr.length; i++){
+					//数组的每一位和空字符串比较
+					if(arr[i] == ""){
+						//将匹配上的i位删除
+						arr.splice(i,1);
+						//原来的i+1位在第i位被删除后变成新的第i位
+						//但仍然需要进行判断，顾循环的应该返回一步仍然从第i位进行判断循环
+						i--;//删除一个后 数组长度应该减1
+					}
+				}
+				console.log("arr:"+ arr);
+		*/
+
+
+		
+		//1 "." :查找单个字符，除了换行和行结束符。
+		var str1 = " abc.;123>哈哈\n{}";
+		var reg1 = /./g;
+		var arr1 = str1.match(reg1);
+		console.log(arr1); //[" ","a", "b", "c", ".", ";", "1", "2", "3", ">", "哈", "哈", "{", "}"]
+		
+		
+		//2 "\w" :查找单词字符(包括大小写)以及数字和下划线
+		//"\W" :查找除了 单词字符(包括大小写)以及数字和下划线 之外的所有字符
+		var str2 = " abcA.;123>哈哈\n{_}";
+		var reg2 = /\w/g;
+		//\w作为正则匹配符号，直接出现在字符串中，系统无法识别，需要转义
+		//\\w第一个"\"表示转义  也是ok哒~
+		//var reg2 = new RegExp("\\w","g");
+		var arr2 = str2.match(reg2);
+		console.log(arr2);//["a", "b", "c", "A", "1", "2", "3", "_"]
+	
+		
+		//3 "\d" :查找数字。
+		//"\D":表示查找除了0~9的所有字符 相当于\d的取反
+		var str3 = " abc.;123>哈哈\n{}";
+		var reg3 = /\d/g;
+		var arr3 = str3.match(reg3);
+		console.log(arr3);//["1", "2", "3"]
+		
+		//4 "\s" :匹配任意空白字符 相当于包含了（ 空格 \f \t \n \v）
+		// "\S" :匹配任意除 空白字符 以外的所有字符
+		var str4 = " abc.;123>哈哈\n{}";
+		var reg4 = /\S/g;
+		var arr4 = str4.match(reg4);
+		console.log(arr4);//[" ", "↵"]
+		
+		//5 "\n" :单独匹配换行
+		var str5 = " abc.;123>哈哈\n{}";
+		var reg5 = /\n/g;
+		var arr5 = str5.match(reg5);
+		console.log(arr5);//["↵"]      
+		
+		//6 "\uxxxx" xxxx 代表4个16进制位数 \u2460==>①  Unicode编码
+		var str6 = "①②③④";
+		var reg6 = /\u2460/g;
+		var arr6 = str6.match(reg6);
+		console.log(arr6);
+		
+		//7 "\xmm" mm代表的是2个16进制数  ASCII码表数值
+		var str7 = "@a️";
+		var reg7 = /\x40\x61/g;
+		var arr7 = str7.match(reg7);
+		console.log(arr7);//["@a"]
+		
+		
+		//进制转换 连除倒取余 10--->n(2,.. )
+		//按位求和 n-->10
+	</script>
+  
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>rotate页面</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+		
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			#box {
+				width: 100px;
+				height: 100px;
+				/*position: absolute;*/
+				background: red;
+				margin: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">返回主页</div>
+		<div id="box"></div>
+	</body>
+	<script src="js/touchjs.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		
+		box.ontouchstart = function(ev){
+			ev.preventDefault();
+		}
+		var endAngle = 0;
+		var angle = 0;
+		touch.on(box,"rotate",function(obj){
+			console.log(obj.rotation);
+			angle = obj.rotation + endAngle;
+			box.style.webkitTransform = "rotate(" + angle + "deg)";
+		});
+		
+		box.ontouchend = function(){
+			endAngle = angle;
+		}
+
+//		touch.on(box,"rotateend",function(){
+//			endAngle = angle;
+//		});
+	</script>
+</html>

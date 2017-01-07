@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>事件</title>
+	</head>
+	<body>
+		<div></div>
+	</body>
+	<script type="text/javascript">
+		document.onclick = function(e) {
+			var ev = e || event;
+			console.log(ev);
+			
+			console.log(this)
+			console.log(window)
+			console.log(self)
+		}
+		
+		
+		
+		var p = {
+			name:"zhangsan",
+			age:18
+		}
+		// 在用户绑定事件时，如果不需要运用事件，可以不接收参数
+		// 但需要使用事件时，直接给参数列表添加一个形参来接收事件参数即可
+		// 针对类似chrome的大部分浏览器，不接收参数的情况下，在绑定事件的函数中也能直接拿到event事件
+		p.eat = function() {
+			alert("吃"+"碗饭")
+		}
+		if (p.eat) {
+			// 模拟系统调用事件，均会传人event事件参数
+			p.eat(self.event)
+		}
+	</script>
+</html>

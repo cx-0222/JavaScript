@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ入口</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//1. ① windom.onload只能保留最后一次赋值函数 即会覆盖
+				// ② 必须等到DOM树加载完毕 且每一个节点的资源请求加载完毕，才执行
+			//2. ① document.ready可以保留每一个函数入口 顺序从上到下
+				// ② 必须等到DOM树加载完毕 无需管节点上的资源 便可以执行、
+				// ③ 可以简化
+				// ④ function括号里只用写$就可以包含所有
+		
+			$(document).ready(function(){
+				console.log("document-load-1");
+			});
+			
+			window.onload = function(ev){
+				console.log("windom-load-1");
+			}
+			
+			//一定先于 window.onload 执行
+			console.log("script-load-1");
+			
+			window.onload = function(ev){
+				console.log("windom-load-2");
+			}
+			
+			$(document).ready(function(){
+				console.log("document-load-2");
+			});
+			
+			$(function($){
+				console.log("document-load-3");
+			});
+		</script>
+	</head>
+	<body>
+		<img src="http://f.hiphotos.baidu.com/zhidao/pic/item/1b4c510fd9f9d72a7d79090ad22a2834349bbb83.jpg"/>
+	</body>
+</html>

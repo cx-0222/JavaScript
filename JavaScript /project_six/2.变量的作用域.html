@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 1、变量分为局部变量 和 全局变量
+		// 2、两种变量都存在作用域，且出了自己所在的作用域会被销毁
+		// 3、同名的全局变量和局部变量之间是不同的变量
+		// 4、同名的局部变量之间也是不同的变量
+		// 5、局部变量： 在函数内部用var声明的变量 或 函数参数列表中出现的变量(其余的均为全局变量) 
+		function fn1 (){
+			var a = 10;
+			console.log(a);
+		}
+		
+		function fn2 (a){
+		    a = 10;
+			console.log(a);
+		}
+		fn1();
+		fn2();
+//		console.log(a);//Uncaught ReferenceError: a is not defined  说明上面的 a 均为局部变量，出了作用域就被销毁了
+		
+		//6、全局变量：① 在函数外用 var 声明的变量
+				   // ② 省略var 的变量声明(不管它出现在什么地方)
+				   // ③ 存在 for while if 中的变量
+		var num1 = 10;
+		function f1(){
+			console.log(num1);//10
+		}
+		f1();
+		
+		function f2(){
+			num2 = 20;
+		}
+		f2();
+		console.log(num2);//20
+		
+		for(var i = 0; i < 5; i++){}
+		console.log(i);//5
+		for(; i < 10; i++){//没清初始值，所以 i = 5 因为 i 为 全局变量
+			console.log(i);//5 6 7 8 9
+		}
+	</script>
+</html>

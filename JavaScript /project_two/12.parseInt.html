@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>parseInt</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	
+	//	var a = 1.6;
+	// 1、number：自动截断小数，1.0~1.9均为1
+	//	var a = "1.6";
+	// 2、string：先转换类型，再自动截断小数，1.0~1.9均为1
+	//	var a = "abc";
+	// 3、string：普通字符串，输出NaN
+	//	var a = "123abc";
+	// 4、string：只保留数值 输出123
+	//	var a = "abc123";/a23b
+	// 5、输出 NaN
+		var a = "12aa12";
+	// 6、输出 12
+		var b = parseInt(a);
+		console.log(b);
+		
+		var c = "12.12";
+		var d = parseFloat(c);
+		console.log(d);
+		//如何判断一个被转换的数是否是NaN
+		var x = "abc"
+		//isNaN(parseInt(x))  判断是否是NaN
+		if(isNaN(parseInt(x))){
+			console.log("非数字");
+		}else{
+			console.log("数字");
+		}
+	</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模拟存储cookie</title>
+	</head>
+	<body>
+		<!--name值作为后台的key-->
+		账户：<input id="user" name="user" type="text" />
+		密码：<input id="pw" name="pw" type="password" />
+		<button id="btn">保存信息</button>
+	</body>
+	<script type="text/javascript">
+		var user = document.all.user;
+		var pw = document.all.pw;
+		var btn = document.all.btn;
+		
+		var nowDate = new Date();
+		nowDate.setDate(nowDate.getDate()+7);
+		nowDate = nowDate.toGMTString();
+		
+		var nowM = new Date();
+		nowM.setMinutes(nowM.getMinutes()+2);
+		nowM = nowM.toGMTString();
+		//cookie中不能直接存储中文，需要借助编码函数
+		//编码encodeURI(user.value)    反编码decodeURI("%E5%BC%A0%E4%B8%89")
+		//编码escape(user.value)   	反编码unescape("%E5%BC%A0%E4%B8%89")
+		btn.onclick = function(){
+			//encodeURI(user.value) escape(user.value) 都是转码，防止用户输入的是中文
+			//document.cookie = user.name + "=" + encodeURI(user.value);
+			document.cookie = user.name + "=" + escape(user.value) + ";expires=" + nowDate;//注意;expires 前面的分号！！！！！！！
+			document.cookie = pw.name + "=" + pw.value + ";expires=" + nowM;
+		}
+		//反转码
+		//console.log(	decodeURI("%E5%BC%A0%E4%B8%89"));
+		//console.log(	unescape("%E5%BC%A0%E4%B8%89"))
+	</script>
+</html>

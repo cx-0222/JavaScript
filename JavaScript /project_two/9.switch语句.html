@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	/*格式
+		switch(变量){
+			case 常量1:执行代码块 1 ;break;
+			case 常量2:执行代码块 2 ;break;
+			case 常量3:执行代码块 3 ;break;
+			... 		 n:.....     n;break;
+			default : 变量 与 case 1 和 case 2 不同时执行的代码;break;
+
+		}
+		*/
+		//1、break：只要遇到break，就结束switch，执行switch一下的语句
+		//2、case 常量作为匹配的入口，有了入口程序会依次往下执行到第一个break，作为出口，如果一直未找到break，就会执行完switch中的所有语句，然后自动出来
+		//3、break 的有无根据实际情况而定，且break只能出现在某一分支中
+		//4、一般每个case（default）后都包含一个break
+		//5、default 分支为默认分支，出现在最后，表示所有case都未匹配上执行该分支
+		//6、case后常量可以和switch（变量）为相同的任意类型
+		//7、不同case具有相同语句，可以简写
+		
+		/*
+		var num = parseInt(prompt("请输入一个数："));
+		switch(num){
+			case 1:
+			case 3:alert("这是第1个case");break;
+			case 2:alert("这是第2个case");break;
+			case 4:alert("这是第4个case");break;
+			case 5:alert("这是第5个case");break;
+			default:alert("上面没办法匹配才执行的语句");break;
+		}
+		alert("switch执行玩了");
+		*/
+		
+		//输入一个年份，再输入一个月份，输出该月有多少天
+		
+		var year = parseInt(prompt("请输入一个年份："));
+		var month = parseInt(prompt("请输入一个年月份："));
+		if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0){
+			switch(month){
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12:alert("本月是31天");break;
+				case 2:alert("本月是29天");break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:alert("本月是30天");break;
+				default:	alert("输入错误");break;	
+			}
+		}else{
+			switch(month){
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12:alert("本月是31天");break;
+				case 2:alert("本月是28天");break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:alert("本月是30天");break;
+				default:	alert("输入错误");break;	
+			}
+		}
+	</script>
+</html>

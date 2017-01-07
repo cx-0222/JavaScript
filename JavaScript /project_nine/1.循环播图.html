@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#box {
+				width: 500px;
+				height: 120px;
+				background-color: orange;
+				margin: 30px auto;
+				/* JS 动画*/
+				position: relative;
+				overflow: hidden;
+			}
+			#stage {
+				list-style: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#stage>li {
+				width: 118px;
+				height: 118px;
+				border:1px solid blue;
+				background-color: palegoldenrod;
+				font: bold 20px/120px "微软雅黑";
+				text-align: center;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="btn1" type="button"  value="向左" />
+		<input id="btn2" type="button" value="向右" />
+		<div id="box">
+			<ul id="stage">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var btn1 = document.getElementById("btn1");
+		var btn2 = document.getElementById("btn2"); 
+		var box = document.querySelector("#box");
+		var stage = document.querySelector("#stage");
+			//document.querySelectorAll("#stage>li"); 只能获取原布局 
+			//下面通过js更新布局后，选择器反应不过来，做不到协同操作
+		//var lis = document.querySelectorAll("#stage>li");
+			// 第①种解决办法  
+		var lis = stage.getElementsByTagName("li");
+			//innerHTML 包含子标签和内容 且可以进行加法运算
+		stage.innerHTML += stage.innerHTML;
+			// 第②种 先更新，再去获取也可以 (一般不适用，可读性差)
+		//var lis = document.querySelectorAll("#stage>li");
+			//根据子元素的个数及其可视盒子的大小，规定stage的最终宽度
+		stage.style.width = lis[0].offsetWidth * lis.length + "px";
+		
+		//设置运动速率
+		var speed = 2;
+		//获取初始位置
+		var offset = stage.offsetLeft;
+		//最大步数
+		var maxStep = stage.offsetWidth/2;
+		function move() {
+			if(offset < -maxStep){
+				offset = 0 ;
+			}
+			if(offset > 0){
+				offset = -maxStep ;
+			}
+			offset += speed;
+			stage.style.left = offset + "px";
+		}
+		
+		var timer = setInterval(function(){
+			move();
+		},30);
+		
+			
+		btn1.onclick = function(){
+			speed = -2;
+		}
+		btn2.onclick = function(){
+			speed = 2;
+		}
+		
+		box.onmouseenter = function(){
+			clearInterval(timer);
+		}
+		box.onmouseleave = function(){
+			timer = setInterval(move,30);
+		}
+	</script>
+</html>

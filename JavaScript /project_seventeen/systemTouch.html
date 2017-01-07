@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>systemTouch页面</title>
+		<script type="text/javascript">
+			window.onload = function() {
+				btn.onclick = function() {
+					history.go(-1); //回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			#btn {
+				width: 97vw;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			
+			#box {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="btn">设备摇晃</div>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var disX = 0;
+		var disY = 0;
+		box.ontouchstart = function(ev) {
+			ev.preventDefault();
+			box.innerHTML = "开始移动";
+			//console.log(ev);
+			//设置一根手指移动box
+			if(ev.touches.length == 2) {
+				var finger = ev.touches[0];
+				disX = finger.clientX - box.offsetLeft;
+				disY = finger.clientY - box.offsetTop;
+			}
+
+		}
+		box.ontouchmove = function(ev) {
+			if(ev.touches.length == 2) {
+				var finger = ev.touches[0];
+				box.style.left = finger.clientX - disX + "px";
+				box.style.top = finger.clientY - disY + "px";
+			}
+		}
+		box.ontouchend = function() {
+			box.innerHTML = "结束移动";
+		}
+	</script>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>瀑布流+下载进度</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 90%;
+				background-color: wheat;
+				margin: 20px auto 0 auto;
+				overflow: hidden;
+			}
+			
+			#wrap ul {
+				float: left;
+				width: 24%;
+				margin: 10px 0.5%;
+				list-style: none;
+				/*height: 100px;*/
+				/*background-color: blue;*/
+			}
+			
+			#wrap ul li {
+				font-size: 50px;
+				text-align: center;
+				background-color: burlywood;
+				margin: 10px 0;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var num = 1;
+		var uls = document.getElementsByTagName("ul");
+		var total = 100;
+		//var timer = null;
+		//console.log(uls);//[ul, ul, ul, ul]
+
+		//第一步：创建li
+		function createLi(count) {
+			for(var i = 0; i < count; i++) {
+				var li = document.createElement("li");
+				num++;
+				loading(li,num);
+				setAttributeLi(li);
+				minUl(li);
+			}
+		}
+		//第二步：设置li的属性
+		function setAttributeLi(obj) {
+			//内容
+			//obj.innerHTML = num++;
+			obj.innerHTML = 1 + "%";
+			//高度 随机
+			obj.style.height = randomNum(400, 100) + "px";
+		}
+		//第三步 找出最短ul 插入li
+		function minUl(obj) {
+			var minHeightUl = uls[0];
+			for(var i = 0; i < uls.length; i++) {
+				console.log(minHeightUl);
+				if(minHeightUl.offsetHeight > uls[i].offsetHeight) { //!!!!!比较的是高度！！不是标签！！
+					minHeightUl = uls[i];
+				}
+			}
+			minHeightUl.appendChild(obj);
+		}
+		//第三步，图片加载
+		function loading(obj,num) {
+			var timer = null;//全局也可以
+			var count = 1;//!!!!!!!不可以设置为全局变量！！！因为每个li进来都得从1%开始加载，否则后一个进来用的都是在前一个的count上加
+			timer = setInterval(function() {
+				count += randomNum(4, 0);
+				if(count >= total) {
+					count = 100;
+					clearInterval(timer);
+				}
+				obj.innerHTML = count + "%";
+				if(count == 100) {
+					obj.innerHTML = num;
+					obj.style.backgroundColor = "#5FA86D";
+				}
+			}, 300);
+		}
+		//第四步 利用事件监听实现无限循环
+
+		//设置随机数
+		function randomNum(max, min) {
+			return parseInt(Math.random() * (max - min + 1)) + min;
+		}
+		createLi(20);
+
+		//第四步 利用事件监听实现无限循环
+		window.onscroll = function() {
+			if(document.body.scrollTop >= document.documentElement.offsetHeight - document.documentElement.clientHeight) {
+				createLi(5);
+			}
+		}
+	</script>
+
+</html>

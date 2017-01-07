@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+			#box {
+				position: relative;
+			}
+			#setUp {
+				float: right;
+				margin-top: 5px;
+				margin-right: 60px;
+			}
+			#setUp_ul {
+				list-style: none;
+				width: 104px;
+				height: 64px;
+				/*border: 1px solid gray;*/
+				position: absolute;
+				top: 10px;
+				right: 5px;
+				
+				display: none;
+			}
+			
+			#setUp_ul li {
+				width: 66px;
+				height: 18px;
+				border: 1px solid gray;
+				margin-bottom: 2px;
+			}
+			#setUp_ul li a:hover{
+				background-color: blue;
+				color: white;
+			}
+			#login{
+				text-decoration: none;
+				color: black;
+				float: right;
+				margin-top: 5px;
+				margin-right: 30px;
+				
+			}
+			
+			#moban {
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(0,0,0,0.2);
+				position: relative;
+				top: 0px;
+				left: 0px;
+				display: none;
+					
+			}
+			#register {
+				width: 27%;
+				height: 67%;
+				background-color: white;
+				position: absolute;
+				top: 16%;
+				left: 36%;
+			}
+			#register input{
+				float: right;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<a id="setUp">设置</a>
+			<a id="login">登录</a>
+			<div id="setUp_1">	
+				<ul id="setUp_ul">
+					<li><a>搜索设置</a></li>
+					<li><a>高级收索</a></li>
+					<li><a>关闭预测</a></li>
+					<li><a>收索历史</a></li>
+				</ul>
+			</div>	
+			<div id="moban">
+				<div id="register">
+					<input type="button" name="btn" id="btn" value="x" />
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var login = document.all.login;
+		var moban = document.all.moban;
+		var btn = document.all.btn;
+		
+		var setUp = document.all.setUp;
+		var setUp_1 = document.all.setUp_1;
+		
+		login.onclick = function () {
+			moban.style.display = "block";
+		}
+		btn.onclick = function () {
+			moban.style.display = "none";
+		}
+		setUp.onmouseenter = function (){
+			setUp_ul.style.display = "block";
+		}
+		setUp_1.onmouseleave = function (){
+			setUp_ul.style.display = "none";
+		}
+	</script>
+</html>

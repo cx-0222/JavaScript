@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>正则直接量</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//  /正则表达式/属性列表
+		var str = "abcAbcaBcabC";
+		var reg = /abc/ig;
+		// + 表示前加后 当后面属性有的时候正确 后面属性没有的时候反而错误，所以不建议使用这种方法
+		// var reg = /abc+/ig;
+		var res = str.match(reg);
+		console.log(res);
+	</script>
+</html>

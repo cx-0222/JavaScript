@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+			}
+			
+			#wrap {
+				width: 83vw;
+				height: 100px;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			.subDiv {
+				/*width: 20vw;*/
+				background-color: burlywood;
+				font-size: 50px;
+				text-align: center;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap"></div>
+	</body>
+	<script type="text/javascript">
+		var wrap = document.querySelector("#wrap");
+		//1、瀑布流分m列 每列的宽度相等 高度随机
+		//2、每出现一个新的子标签，都需要从第一列遍历到最后一列 找出最短列
+		//3、将新创建的子标签添加到最短列
+		var count = 1; //给元素添加innerHTML
+		var colArr = [0, 0, 0, 0]; //用来储存四列的高度
+		var randomHeight = 0;//一个生命周期中
+		//创建subDiv的方法
+		function createSubDiv() {
+			//创建div
+			var tempDiv = document.createElement("div");
+			//设置相关属性
+			//var rh = setupAttribute(tempDiv);
+			setupAttribute(tempDiv);
+			//找出最短列
+			var minIndex = minCol();
+			//插入节点：根据最短列索引给定该插入的节点的left和top
+			insertDiv(minIndex, tempDiv);
+			//更新数组：插入节点后，四列中原最短列的长度会更新
+			//colArr[minIndex] += rh;
+			//+ 10 调整上下边距
+			colArr[minIndex] += randomHeight + 10;
+		}
+
+		//设置相关属性
+		function setupAttribute(obj) {
+			obj.className = "subDiv";
+			obj.style.width = "20vw";
+			obj.innerHTML = count++;
+			//保存随机高度，因为多处要使用
+			//var randomHeight = randomNum()
+			//② 设置全局变量
+			randomHeight = randomNum();
+			//设置随机高度
+			//obj.style.height = randomHeight + "px";
+			obj.style.height = randomHeight + "px";
+			//① 返回值！
+			//return randomHeight;
+		}
+
+		//设置随机高度
+		function randomNum() {
+			return parseInt(Math.random() * (400 - 100 + 1)) + 100;
+		}
+		//找出最短列
+		function minCol() {
+			var minIndex = 0; //最短列先为0 第一列（索引为0）
+			for(var j = 1; j < colArr.length; j++) { //依次从第二列开始（索引值为1）和最短列比较
+
+				if(colArr[minIndex] > colArr[j]) { //如果发现有更短的列，更新最短列的索引为j
+					minIndex = j;
+				}
+			}
+			return minIndex;
+		}
+		//插入节点
+		function insertDiv(index, obj) {
+			var insertTop = colArr[index];
+			//obj.offsetWidth + 1  obj的宽度+间隙的1vw
+			//console.log(obj.offsetWidth);//0
+			//console.log(obj.style.width);//20vw
+			//var a = parseInt(obj.style.width);
+			//console.log(a)//20
+			var insertLeft = index * (parseInt(obj.style.width) + 1);
+			obj.style.top = insertTop + "px";
+			obj.style.left = insertLeft + "vw";
+			wrap.appendChild(obj);
+		}
+
+		function initSubs() {
+			for(var i = 0; i < 20; i++) {
+				//创建subDiv
+				createSubDiv();
+			}
+		}
+		initSubs();
+		
+		//懒加载实现无限瀑布流
+		window.onscroll = function(){
+			//cTop 当前屏幕的可视高度
+			var cTop = document.documentElement.clientHeight;
+			console.log(cTop)
+			//oTop 文档中(document)可视内容的总高度  注！！！！脱离文档流的不算
+			var oTop = document.documentElement.offsetHeight;//文档高度  从开始到结束
+			//本次代码中，内容都脱离了文档流，所以 oTop 无法使用  数组中保留的数字就是代表文档的实际结束位置
+			oTop = colArr[0]-10;//10为更新数组时增加的10px 不属于oTop(内容)的范畴
+			//console.log(cTop,oTop,colArr[0]);
+			var sTop = document.documentElement.scrollTop || document.body.scrollTop;
+			//console.log(sTop);
+			if(sTop >= (oTop-cTop)){
+				initSubs();
+			}
+		}
+	</script>
+
+</html>

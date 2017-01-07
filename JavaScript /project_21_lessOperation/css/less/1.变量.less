@@ -1,0 +1,19 @@
+
+//变量都是@开头 且@是变量的一部分
+//100px 不可以 加引号 
+@num:100px;
+@color:#112233;
+
+//变量
+div {
+    width: @num;
+    height: @num;
+    background-color: @color;
+}
+
+//变量运算
+p {
+    width: @num *2;
+    height: @num * 4 / 3;
+    background-color:@color * 2 ;
+}

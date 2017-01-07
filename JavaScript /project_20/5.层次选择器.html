@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>层次选择器</title>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: cadetblue;
+				margin: 10px auto;
+				font: normal 20px/100px "微软雅黑";
+				text-align: center;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">1</div>
+		<div class="div2">2</div>
+		<!--<p>111</p>-->
+		<div class="div3">3</div>
+		<p>222</p>
+		<div class="div4">4</div>
+		<p>11111</p>
+		<div class="div5">5</div>
+	</body>
+	<script type="text/javascript">
+		// ① 后代选择器
+		$("html .div1").on("click",function(){
+			alert("div1点击了");
+		})
+		// ② 子代选择器
+		$("body>.div2").on("click",function(){
+			alert("div2点击了");
+		})
+		// ③ 兄弟选择器 + 表示.div2后面第一个 如果第一位是div 就满足 否则舍弃
+		$(".div2+div").on("click",function(){
+			alert("div3点击了");
+		})
+		//$(".div2+p").on("click",function(){
+			//alert("div3点击了");
+		//})
+		//兄弟选择器 ~ 表示.div3 后面所有div兄弟标签 哪怕不是连续的
+		$(".div3~div").on("click",function(){
+			alert("div4 div5点击了");
+		})
+	</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var arr = [1,2,3];
+		document.write(arr + "<br />");
+		//① 从尾部插入元素push(4)
+		arr.push(4);
+		document.write(arr + "<br />");
+		document.write(arr.length + "<br />");//输出4 
+		
+		//② 从头部插入元素 unshift(0)
+		arr.unshift(0);
+		document.write(arr + "<br />");
+		document.write(arr.length + "<br />");//输出5
+		
+		//③ 从尾部删除元素
+		arr.pop();//不需要参数，操作的是自身
+		document.write(arr + "<br />");//删除了4
+		
+		//④ 从头部删除元素
+		arr.shift();//不需要参数
+		document.write(arr + "<br />");//删除了0
+		
+		//
+//		arr.unshift(0,0,0);//头
+//		arr.push(4,4,4);//尾
+//		for(var i = 0; i < arr.length; i++){
+//			console.log(arr[i]);
+//		}
+
+		for(var i = 1; i <= 5; i += 2){
+			arr.push(i * 10);//尾
+			arr.unshift(i);//头	: 后插入的在前面，也就是插入一组数据后，数据是反着的
+		}
+		for(var i = 0; i < arr.length; i++){
+			console.log(arr[i]);//5，3，1，1，2，3，10，30，50
+		}
+		//⑤ splice 函数 splice(起始位置, 长度): 该方法从起始位置开始, 删除长度个元素
+		var arr1 = [1,2,3,4,5,6,7];
+		arr1.splice(0,2);//3,4,5,6,7 
+		arr1.splice(1,2);//3,6,7
+		document.write(arr1 + "<br />");
+		
+		//splice(起始位置, 0, 要插入的元素1, 要插入的元素2, 要插入的元素3…): 
+			//从起始位置删除0个元素, 然后把要插入的元素从起始位置插入进数组
+		arr1 = [1,2,3,4,5,6,7];
+		//arr1.splice(0,0,1,2,3,4,5,6,7);//从左往右依次插入1，2，3，4，5，6，7 不用反过来
+		arr1.splice(3,0,0,0,0,0,0,0,0);//3 代表数值4 插在4的前面 从左往右依次插入
+		document.write(arr1 + "<br />");
+		
+		//⑥ 数组的拼接
+		//数组1.concat(数组2)：是将数组2拼接到数组1之后，得到一个新的数组
+		//arr.concat(arr1);
+		var a = [];
+		arr = [1,2,3];
+		arr1 = [4,5,6];
+		a = arr.concat(arr1);
+		//alert(a);
+		
+		//⑦ 将 数组 转换成 字符串
+		//a.join("#");
+		var str = [];
+		str = a.join("#");//以#为分割符 
+		document.write(str + "<br />");//str 为字符型 ！！！！！！！
+	</script>
+</html>

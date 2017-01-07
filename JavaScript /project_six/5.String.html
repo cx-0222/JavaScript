@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//利用函数去转化为字符串
+		var a = 10;
+		console.log(typeof a, a);//number 10
+		a = a.toString();
+		console.log(typeof a, a);//string 10
+		a = [1,2,3,4,5];
+		console.log(typeof a, a);//object [1, 2, 3, 4, 5]
+		a = a.toString();
+		console.log(typeof a, a);//string 1,2,3,4,5
+		//可以通过 变量.toString() 及 String(变量) 将非Sring类型的变量转化为string类型，
+		//这两种方法都有返回值，变量自身没有发生改变，变化的是两种函数的返回值
+		
+		//创建字符串对象
+		var str1 = "i am str1";
+		var str2 = new String("i am str2");
+		var str3 = String(str2);//通过对象来创建对象
+		console.log(typeof str2, str2);//object String {0: "i", 1: " ", 2: "a", 3: "m", 4: " ", 5: "s", 6: "t", 7: "r", 8: "2", length: 9, [[PrimitiveValue]]: "i am str2"}
+		console.log(typeof str3, str3, str3.length);//string i am str2 9
+		
+		var str = new String("ti tb tc td");
+		console.log(str, str.length, typeof str);
+		
+		//1、charAt(index) 索引index从0开始，函数返回的是对象在该索引下的单个字符
+		var temp = str.charAt(0);
+		console.log(temp);//t
+		
+		//2、search("字符串") 查找字符串 如果找到 返回的是最前面的字符所占的索引 且结束查找
+		//如果没有找到 返回 -1 
+		temp = str.search("i");
+		console.log(temp);// 1 说明 i 的索引为 1
+		
+		temp = str.search("t");
+		console.log(temp);// 0 找到一个就返回
+		
+		//3、字符串截取
+		// 一个数字参数时，三者一样，从索引为该数字的位子截取到最后
+		//substring(3,5)/slice(3,5)表示从索引3开始截取到索引5之前  即 3，4两位 (超出就是截完为止) 
+		//substr(3,5)表示从索引3开始往后截取5位，即 3 4 5 6 7五位
+		console.log(str);//ti tb tc td
+		temp = str.substring(3,5);
+		console.log(temp);//tb
+		
+		temp = str.substr(3,5);
+		console.log(temp);//tb tc
+		
+		temp = str.slice(3,5);
+		console.log(temp);//tb
+		
+		//4、字符串的替换：只替换匹配到的第一个满足条件的子字符串
+		temp = str.replace("t","T");
+		console.log(temp);//Ti tb tc td
+		temp = temp.replace("t","T")
+		console.log(temp);//Ti Tb tc td
+		
+		//5、拆分(string / string:object ===> array)
+		temp = str.split(" ");//以空格拆分，空格是拆分的标准
+		console.log(temp);//["ti", "tb", "tc", "td"]
+		temp = str.split("");//以字符拆分，单个字符是拆分的标准 空格也是字符
+		console.log(temp);//["t", "i", " ", "t", "b", " ", "t", "c", " ", "t", "d"]
+		temp = str.split("",3);//以字符拆分，且只取前三个
+		console.log(temp);//["t", "i", " "]
+		
+		//6、拼接
+		//var s = "000"
+		//temp =concat("000")
+		//temp =concat("000","1111")
+		//temp =concat("000",1,"1111")
+		temp = ("000").concat(str);
+		console.log(temp);//000ti tb tc td
+		
+		//7、正反索引 : 效率高 返回结果为 所在索引（当不存在时，返回-1）
+		temp = str.indexOf(" ");
+		console.log(temp);//2
+		temp = str.lastIndexOf(" ");
+		console.log(temp);//8
+	</script>
+</html>

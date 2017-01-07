@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>正则匹配邮箱地址</title>
+	</head>
+
+	<body>
+		请输入电子邮件地址：
+		<input type="text" name="email_address" id="email_address" style="width: 300px;" />
+		<input type="button" name="btn" id="btn" value="是否合法" />
+	</body>
+	<script type="text/javascript">
+		//123456@jb51.net 
+		//web.blue@jb51.net 
+		//web_blue@jb51.net 
+		//web-blue@jb51.net 
+		var email_address = document.getElementById("email_address");
+		var btn = document.getElementById("btn");
+
+		function check(email_address) {
+			//console.log(email_address);
+			var reg = /^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*@([A-Za-z0-9]+[-.])+[A-Za-z0-9]{2,5}$/
+			if(reg.test(email_address)) {
+				alert("您输入的电子邮件地址合法");
+				return true;
+			} else {
+				alert("您输入的电子邮件地址不合法");
+				return false;
+			}
+		}
+
+		btn.onclick = function() {
+			check(email_address.value);
+		}
+	</script>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>算术运算符</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//取余运算  余数符号与被除数符号一致！！！！
+		//当被除数为负数时，余数为负数
+		//当被除数为正数时，余数为正数
+		/*
+		var b;
+		b = (-2) % 7;
+		console.log(b);//输出-2 
+		
+		b = (-7) % 4;
+		console.log(b);//输出-3
+		
+		b = 2 % (-7);
+		console.log(b);//输出2
+		
+		b = 4 % (-7);
+		console.log(b);//输出4
+		
+		b = (-2) % (-7);
+		console.log(b);//输出-2
+		
+		b = 2 % 7;
+		console.log(b);//输出2
+		*/
+		
+		//赋值  =
+		//将变量 a 与 变量 b 的运算结果  赋值给 c
+		var a = 10;
+		var b = 5;
+		var c = a + b;
+		console.log(c);
+		// += -= *= /= %= 
+		var d = 20;
+		var e = 10;
+		//当变量要参与运算时，必须拥有初始值
+		//一般在定义变量时，尽量做初始化操作
+		//当变量未作初始化操作，类型为undefined
+		//运算结果为NaN 非数值类型值
+		var f = 0 ;
+		f += d;// f = f + d = 0 + 20 = 20
+		console.log(f);//输出20
+		f -= e;// f = f - e = 20 - 10 = 10
+		console.log(f);//输出10
+		f *= d;// f = f * d = 10 * 20 =200
+		console.log(f);//输出200
+		f /= e; 
+		//f = f / e = 200 / 10 = 20
+		console.log(f);//输出20
+		f %= f;// f = f % f = 20 % 20 = 0
+		console.log(f);//输出0
+	</script>
+</html>

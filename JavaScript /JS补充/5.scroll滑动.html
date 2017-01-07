@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>scroll滑动</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.mousewheel.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			div {
+				width: 100%;
+				font: normal 50px "微软雅黑";
+			}
+			.div1 {
+				height: 300vh;
+				background-color: olive;
+			}
+			.div2 {
+				height: 400vh;
+				background-color: slategray;
+			}
+			.div3 {
+				height: 300vh;
+				background-color: mediumpurple;
+			}
+			.div4 {
+				height: 300vh;
+				background-color: chocolate;
+			}
+			.div5 {
+				height: 300vh;
+				background-color: cadetblue;
+			}
+			.div6 {
+				height: 300vh;
+				background-color: brown;
+			}
+			.div7 {
+				height: 300vh;
+				background-color: olivedrab;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">1</div>
+		<div class="div2">2</div>
+		<div class="div3">3</div>
+		<div class="div4">4</div>
+		<div class="div5">5</div>
+		<div class="div6">6</div>
+		<div class="div7">7</div>
+	</body>
+	<script type="text/javascript">
+	
+		// 利用JQ mousewheel 插件
+		//滑动事件的入口 是 鼠标滚轮
+		
+		//第三步 
+		var topArr = [];//存放每次滑动的距离
+		//数组下标
+		var index = 0;
+		//each() 方法规定为每个匹配元素规定运行的函数。
+		//简言之 就是遍历
+		$('div').each(function(){
+			//offset() 方法返回或设置匹配元素相对于文档的偏移（位置）。
+			//返回的对象包含两个整型属性：top 和 left，以像素计
+			//此处只取top
+			//console.log($(this).offset().top);
+			//!!!!如果 用 div的height + scrollTop 作为每次的滑动距离  
+			//console.log($(this).height())
+			
+			
+			
+			//!!!  此时的bug  是由于 height 是用 px 来设置的！！
+			topArr.push($(this).height());
+		});
+		//console.log(topArr);
+		
+		$(document).mousewheel(function(ev){
+			//第一步 为了确保 滚轮滑动一下是一个固定值 要屏蔽系统的默认事件
+			ev.preventDefault();
+			
+			//第二步 检测鼠标是上滑还是下滑 
+			//ev.deltaY 为负 向下 为正 向上
+			//console.log(ev.deltaY);
+			
+			var flag = 0;
+			if (index > topArr.length -1) {
+				index = topArr.length -1;
+			} else if(index < 0){
+				index = 0;
+			}
+			
+			var scroll_top = $(window).scrollTop();
+			if (ev.deltaY > 0) {
+				//设置滑动的距离
+				flag = -1;
+				var step = topArr[--index];
+			} else if(ev.deltaY < 0){
+				flag = 1;
+				var step = topArr[++index];
+				
+			}
+			var height = flag * step + scroll_top;
+			console.log(step);
+			$('html,body').stop().animate({scrollTop:height},1);
+		});
+	</script>
+	
+</html>

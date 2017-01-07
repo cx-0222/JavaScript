@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div {
+				width: 600px;
+				height: 300px;
+				background-color: red;
+			}
+			#div {
+				animation-name:move;
+				animation-duration:3s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+				animation-fill-mode: forwards;
+				animation-play-state: paused; 
+			}
+			@-webkit-keyframes move{
+				
+				15% {
+					margin-left: 25%;
+					margin-top: 0px;
+					border-radius: 0px;
+					width: 600px;
+					height: 300px;
+					transform: scale(1);
+				}
+				30% {
+					margin-left: 25%;
+					margin-top: 25%;
+					border-radius: 0px;
+					width: 600px;
+					height: 300px;
+					transform: scale(1);
+				}
+				45% {
+					margin-left: 25%;
+					margin-top: 25%;
+					border-radius: 50%;
+					width: 600px;
+					height: 300px;
+					transform: scale(1);
+				}
+				60% {
+					margin-left: 25%;
+					margin-top: 25%;
+					border-radius: 50%;
+					width: 300px;
+					height: 300px;
+					transform: scale(1);
+				}
+				75% {
+					margin-left: 25%;
+					margin-top: 25%;
+					border-radius: 50%;
+					width: 300px;
+					height: 300px;
+					transform: scale(1.2);
+				}
+				90%{
+					margin-left: 25%;
+					margin-top: 25%;
+					border-radius: 50%;
+					width: 300px;
+					height: 300px;
+					transform: scale(1);
+				}
+				95%{
+					margin-left: 25%;
+					margin-top: 25%;
+					border-radius: 50%;
+					width: 300px;
+					height: 300px;
+					transform: scale(0.5);
+				}
+				100% {
+					margin-left: 25%;
+					margin-top: 25%;
+					border-radius: 50%;
+					width: 300px;
+					height: 300px;
+					transform: scale(1);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button id="start">开始</button>
+		<button id="down">停止</button>
+		<div id="div"></div>
+	</body>
+	<script type="text/javascript">
+		var start = document.getElementById("start");
+		var down = document.getElementById("down");
+		var div = document.getElementById("div");
+		
+		var isS = false;
+		var isO = false;
+		start.onclick = function (){
+			isS = true;
+			if(isO){
+				div.style.animationPlayState  = "running";
+			}
+		}
+		div.onmouseover = function () {
+			isO = true;
+			if(isS){
+				div.style.animationPlayState  = "running";
+			}
+		}
+		down.onclick = function (){
+			isO = false;
+			isS = false;
+ 		    div.style.animationPlayState  = "paused";
+		}
+	</script>
+</html>

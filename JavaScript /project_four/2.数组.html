@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数组</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//数组
+		//① 数组类型  object
+		var arr1 = new Array();//空数组
+		document.write(typeof arr1);
+		var arr2 = new Array(10);//定义长度为10的数组，没有初始值
+		document.write(arr2);//打印出9个逗号
+		var arr3 = new Array(1,2,3,4,5);//定义内容为1 2 3 4 5的数组
+		document.write(arr3);//打印出1，2，3，4，5以逗号隔开
+		var arr4 = [];
+		document.write(typeof arr4);//定义空数组
+		
+		var arr5 = [20];//定义了一个内容为20的数组
+		document.write(arr5);//打印出20
+		//数组用来存储一串有序列表 的数
+		//数组中的每一项可以存在任意类型的任意数值
+		//数组的长度可以随时 增 减
+		var arr6 = [20,1.5,undefined,null,function(){},"abc",true];//undefined null ""表示无，打印不出来
+		document.write(arr6);//打印出20,1.5,,,function (){},abc,true
+		
+		
+	</script>
+</html>

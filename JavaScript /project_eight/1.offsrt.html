@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#outer {
+				width: 400px;
+				height: 400px;
+				background-color: orange;
+				padding: 10px;
+				border: 10px solid black;
+				margin: 10px;
+				/*margin-top: 100px;*/
+			}
+			
+			#inner {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				padding: 10px;
+				border: 10px solid blue;
+				/*margin: 10px;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="outer">
+			<div id="inner"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var outer = document.all.outer;
+		var inner = document.all.inner;
+		
+		// ① offsetWidth/offsetHeight:可视范围的宽/高
+		// ② 宽/高 400 + padding 10*2 + border 10*2  不包括margin
+		console.log(outer.offsetWidth);//440-----400+20+20
+		console.log(outer.offsetHeight);//440-----400+20+20
+		console.log(inner.offsetWidth);//240-----200+20+20
+		console.log(inner.offsetHeight);//240-----200+20+20
+		
+		
+		//可视原点距离窗口原点的纵向/横向间距
+		//绝对定位的left top 方位也是以窗口原点为基准，一般结合使用
+		//offsetTop和绝对定位特性一致(当有父级元素，且有定位属性，以最近的已经定位的父级元素原点为基准)
+		console.log(outer.offsetTop);//10  margin: 10px;造成的 因为margin不属于可视区域
+		console.log(outer.offsetLeft);//10
+		console.log(inner.offsetTop);//30
+		console.log(inner.offsetLeft);//30 本身没有margin 由于外框的padding 10 + border 10 + margin 10
+		
+		
+		//宽/高 + padding  |ˈklaɪənt|  不包括margin和border
+		console.log(outer.clientWidth);//420
+		console.log(outer.clientHeight);//420
+		console.log(inner.clientWidth);//220
+		console.log(inner.clientHeight);//220
+		
+	</script>
+
+</html>

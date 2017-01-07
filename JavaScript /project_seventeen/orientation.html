@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>orientation页面</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+			document.addEventListener("plusready",function(){
+				plus.screen.unlockOrientation();
+			},false);
+		</script>
+		<style type="text/css">
+		
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			p {
+				width: 100px;
+				height: 40px;
+				font-size: 40px;
+				text-align: center;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">屏幕旋转</div>
+		<p id="p">内容</p>
+	</body>
+	<script type="text/javascript">
+	//console.log("11111")
+		window.addEventListener("orientationchange",orientationFn,false);
+		function orientationFn(ev){
+			//console.log(1111);
+			//console.log(window);
+			//console.log(ev.orientation);
+			if (window.orientation == 0) {
+				p.innerHTML = "正屏";
+			} else if(window.orientation == 90){
+				p.innerHTML = "左屏";
+			}else if(window.orientation == -90){
+				p.innerHTML = "右屏";
+			}
+		}
+	</script>
+</html>

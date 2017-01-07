@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数回调</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//函数回调：在一个函数内部调用另一个函数
+		
+		//模拟主线程
+		function fnMain() {
+			console.log("fnMain");
+			fnSub();
+		}
+		//模拟子线程
+		function fnSub() {
+			setTimeout (function(){
+				console.log("fnSub");
+			},2000);
+		}
+		//主线程中的下一个函数
+		function fnAfter() {
+			console.log("fnAfter");
+		}
+		fnMain();
+		fnAfter();
+		//打印结果
+		//fnMain
+ 		//fnAfter
+ 		//fnSub
+	</script>
+</html>

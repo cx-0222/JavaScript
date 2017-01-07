@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数组访问</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//数组除了最后一位不能空赋值，其余均可(在定义过程中)
+		var arr = [1,2,3,5,,7];
+		//length 数组元素的个数(数组长度，一般用于数组遍历)
+		//alert(arr.length);
+		//单一访问数组中某个元素
+		//数组名[元素所在下标](数组下标从0开始，如访问第5个元素，下标为4)
+		alert(arr[5]);
+		arr[3] = "5";
+		alert(typeof arr[3]);
+		
+		arr[4] = 4 < 5 ;
+		alert(arr[4]);//打印出true
+		
+		var bl = arr[4];
+		alert(bl);//打印出true
+		
+		//1、直接访问数组名，访问的是整个数组  直接访问和在等号右边都不影响！！！
+		//2、① 对于数组中单一元素：没有看见"=" 一定是取值操作 
+		//   ② 看见了"=" 如果出现在左侧，则是赋值操作；在右侧则是取值操作
+		var a = [1,2,3];
+		var num1 = a[3];
+		alert(typeof num1);//undefined
+		alert(a.length);//输出3
+		// 从长度3直接瞬变到长度21 中间的未赋值元素均以undefined填充
+		a[20] = undefined;//不建议这么写，数组越界
+		alert(a.length);//输出21
+		
+		//结合数组实现对数组的遍历
+		for(var i = 0; i < a.length; i++){
+			console.log(a[i]);
+		}
+	</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM处理删除</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				font: normal 30px/100px "微软雅黑";
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p>hello</p> how are
+		<p>you</p>
+		<div id="div1">div1</div>
+		<div id="div2">div2</div>
+		
+		<button>删除</button>
+		<button>恢复</button>
+	</body>
+	<script type="text/javascript">
+		//var p;
+		//console.log($('p')); //length=2
+		//元素本身都会保留 所以都可以再一次插入文档中
+		//p = $('p').remove();
+		//p = $('p').detach();
+		//console.log($('p')); //length=0
+		//$('body').append(p);
+		//console.log($('p')); //length = 2
+
+		$('p').click(function(){
+			alert("pppp");
+		});
+		
+		var temp;
+		$('button').eq(0).click(function(){
+			//alert("删除");
+			//temp = $('p').remove();
+			temp = $('p').detach();
+		})
+		
+		$('button').eq(1).click(function(){
+			//alert("恢复");
+			$('body').append(temp);
+		})
+		//区别！！
+		$(function() {
+			$("#div2").hover(function() {
+				$(this).animate({
+					'width': '200px',
+					'height': '200px'
+				})
+			});
+			$("#div2").mouseleave(function() {
+				$(this).animate({
+					'width': '100px',
+					'height': '100px'
+				})
+			});
+			//使用 remove() hover()事件也会被删除 就算再次插入节点 事件也找不回来
+			//ap = $("#div2").remove();
+
+			//使用detach() hover()事件会保存下来 所以再次插入节点的时候 事件也跟着恢复 
+			ap = $("#div2").detach();
+			$("body").append(ap);
+
+		});
+	</script>
+
+</html>

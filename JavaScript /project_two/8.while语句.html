@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+	//while  先判断，满足条件才循环
+		var i = 1;
+		var count = 0
+		//满足条件循环
+		while(i<=100){
+			if(i % 7 == 0 || i % 10 == 7 || parseInt(i / 10) == 7){
+				console.log(i);
+				count++;
+			}
+			i++;
+		}
+		console.log("满足条件的有" + count + "个数");
+		
+	//do{}while() 任何条件下都会执行循环体一次	
+		var j = 1;
+		do{
+			//循环体
+			console.log(j);
+			j++;
+		}while(j < 11)//条件表达式  满足条件就循环
+		
+		console.log("=============================");
+		var m = 1;
+		var num = 0;
+		do{
+			if(parseInt(m / 10 ) == 7){
+				console.log(m);
+				num++;
+			}
+			m++;
+		}while(m<=100)
+		console.log("满足条件的有" + num + "个数");
+		
+		
+		//三种循环的区别
+		//for循环：最常用的（万能）循环，但一般在区别其他两个时，在知道循环次数时用for ，反之选择其他两个循环
+		//while循环：先判断，后循环（条件不满足时，循环体可能一次都不执行）
+		//dou..while：先循环后判断，至少循环一次
+		//for循环的出口可以和循环体有关也可以没关系，
+		//但后两个循环体中的出口（循环判断条件），一定和循环体有关
+	</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表单事件</title>
+	</head>
+	<body>
+		<form id="f" action="https://www.baidu.com">
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+	<script type="text/javascript">
+		var f = document.all.f;
+		
+		f.onsubmit = function(e) {
+			var ev = e || event;
+			alert("提交");
+			
+			// 事件拦截，屏蔽系统默认事件响应
+//			return false;
+			ev.preventDefault(); // 不兼容ie6-8
+		}
+		
+	</script>
+</html>

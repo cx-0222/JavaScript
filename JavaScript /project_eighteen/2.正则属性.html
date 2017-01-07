@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>正则属性</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var str = "abab";
+		//属性g： 全局匹配 从头一直匹配到结束 将匹配上的结果一一存储到数组中，以备使用
+		//没有写"g"表示匹配一个就返回
+		var reg = new RegExp("a","g");
+		var result = str.match(reg);//["a", "a"]
+		console.log(result);
+		
+		//属性i：匹配的字符串不区分大小写
+		//没写i区分大小写
+		var reg1 = new RegExp("A","i");
+		var res1 = str.match(reg1);
+		console.log(res1);//["a", index: 0, input: "abab"]
+		
+		//练习:pi匹配出字符串中存在的四个abc并存储到数组中以备使用
+		var tempStr = "abcAbcaBcabC";
+		//"gi" 连着写  ？？？ 好神奇 吼吼
+		var reg2 = new RegExp("abc","gi");
+		var res2 = tempStr.match(reg2);
+		console.log(res2);
+	</script>
+</html>
